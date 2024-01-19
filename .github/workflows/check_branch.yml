@@ -15,7 +15,7 @@ jobs:
       - name: Find Tag Name
         id: tag
         run: | 
-                  BRANCH="release/1.2.3"
+                  BRANCH="release"
                   if [[ $BRANCH == release/* ]]; then
                     echo "tag_by_release_branch=${BRANCH/'release/'}" >> $GITHUB_OUTPUT
                     echo "Manual Tag - ${tag_by_release_branch}"
