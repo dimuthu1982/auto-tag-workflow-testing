@@ -30,6 +30,7 @@ jobs:
                  echo "AUTO_INCREMENT_TAG=patch" >> $GITHUB_ENV
               else 
                 echo "Unidentified branch"
+                stopMarker=$(uuidgen)
                 echo "::stop-commands::$stopMarker"
               fi
           
