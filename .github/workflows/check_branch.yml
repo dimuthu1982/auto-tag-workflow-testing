@@ -14,6 +14,7 @@ jobs:
       
       - name: Is Branch Comes With A Tag
         if: ${{ startsWith(github.ref, 'release/') }}
+        uses: actions/checkout@v4
       - run: echo "Extract the version from the branch"
       - run: | 
               echo "In the Script file.......b"
