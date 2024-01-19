@@ -20,9 +20,8 @@ jobs:
       - run: | 
               BRANCH="release/1.1.2"
               if [[ $BRANCH == release/* ]]; then
-                BRANCH_TAG_VERSION="${BRANCH/'release/'}" 
-                echo "BRANCH_TAG_VERSION - ${BRANCH_TAG_VERSION}"
-                echo "BRANCH_TAG_VERSION=${BRANCH_TAG_VERSION}" >> $GITHUB_ENV
+                echo "BRANCH_TAG_VERSION=${BRANCH/'release/'}" >> $GITHUB_ENV
+                echo "BRANCH_TAG_VERSION v1 - ${BRANCH_TAG_VERSION}"
               elif [[ $BRANCH == release ]]; then 
                 AUTO_INCREMENT_TAG="minor"
                 echo "Release branch"
