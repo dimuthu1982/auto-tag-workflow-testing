@@ -17,7 +17,9 @@ jobs:
         uses: actions/checkout@v4
       - run: echo "Extract the version from the branch"
       - run: | 
-              echo "In the Script file.......b"
+              echo "In the Script"
+              tagVersion=$(echo ${{ github.ref }} | cut -d'/' -f3)
+              echo "tagVersion : tagVersion"
         
         
       - name: Is Release Branch
