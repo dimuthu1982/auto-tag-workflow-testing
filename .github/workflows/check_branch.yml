@@ -20,11 +20,11 @@ jobs:
                   if [[ $BRANCH == release/* ]]; then
                     echo "release_version=${BRANCH/'release/'}" >> $GITHUB_OUTPUT
                   elif [[ $BRANCH == release ]]; then 
-                    echo "release_type=minor" >> "$GITHUB_OUTPUT"
+                    echo "release_type=minor" >> $GITHUB_OUTPUT
                     echo "Release branch"
                   elif [[ $BRANCH == hotfix ]]; then 
                     echo "Hotfix branch"
-                     echo "release_type=patch" >> "$GITHUB_OUTPUT"
+                     echo "release_type=patch" >> $GITHUB_OUTPUT
                   else 
                     echo "Unidentified branch"
                     echo "::notice title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
