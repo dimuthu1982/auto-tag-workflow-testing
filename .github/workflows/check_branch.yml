@@ -7,4 +7,6 @@ jobs:
      steps: 
       - name: Creating Tag
         uses: actions/checkout@v4
-      - run: echo "DKA GITHUB_ACTOR (${{github.head_ref}})"
+      - run: echo "BRANCH_NAME=release/1.23"
+      - run: echo "Branch - ${BRANCH_NAME}"
+      
