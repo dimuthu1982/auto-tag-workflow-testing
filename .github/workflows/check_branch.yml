@@ -9,7 +9,7 @@ jobs:
   Check-Branch-Name:
      runs-on: ubuntu-latest
      steps: 
-      - name: Creating Tag
+      - name: Find Tag Version
         uses: actions/checkout@v4
       - run: echo "Branch 1 - ${{ github.ref }}"
       
@@ -21,7 +21,7 @@ jobs:
               BRANCH="release/1.1.2"
               if [[ $BRANCH == release/* ]]; then
                 vars.BRANCH_TAG_VERSION="${BRANCH/'release/'}"
-                echo "BRANCH_TAG_VERSION - ${env.BRANCH_TAG_VERSION}"
+                echo "BRANCH_TAG_VERSION - ${vars.BRANCH_TAG_VERSION}"
               elif [[ $BRANCH == release ]]; then 
                 vars.AUTO_INCREMENT_TAG="minor"
                 echo "Release branch"
