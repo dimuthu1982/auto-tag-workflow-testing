@@ -6,8 +6,8 @@ jobs:
      name: Find Tag By Branch
      runs-on: ubuntu-latest
      outputs:
-       release_version: ${{steps.tag.outputs.tag_by_release_branch}}
-       release_type: ${{steps.branch.outputs.release_type}}
+       release_version: ${{steps.tag.outputs.release_version}}
+       release_type: ${{steps.tag.outputs.release_type}}
      steps: 
       #- name: Find Tag Version
       #  id: tag
