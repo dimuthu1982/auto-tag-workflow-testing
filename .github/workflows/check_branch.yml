@@ -48,6 +48,7 @@ jobs:
     steps:
       - env:
           release_type: ${{needs.find-tag-name.outputs.release_type}}
+        run: echo "=====  Branch Type - $release_type"
           
      # - name: Find Next Tag For $release_type release
      #   uses: reecetech/version-increment@2023.10.1
