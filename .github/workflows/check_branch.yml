@@ -19,7 +19,7 @@ jobs:
       - run: | 
               echo "In the Script"
               tagVersion=$(echo ${{ github.ref }} | cut -d'/' -f3)
-              echo "tagVersion : tagVersion"
+              echo "tagVersion : ${tagVersion}"
         
         
       - name: Is Release Branch
