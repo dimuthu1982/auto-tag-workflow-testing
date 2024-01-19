@@ -1,5 +1,5 @@
 name: Merge branch to master
-run-name: Merge ${{ github.head_ref }} to master (After Permision Fixed patch) 🏷️
+run-name: Merge ${{ github.head_ref }} to master (After Permision Fixed patch v) 🏷️
 on:
   pull_request:
     types:
