@@ -7,6 +7,5 @@ jobs:
      steps: 
       - name: Creating Tag
         uses: actions/checkout@v4
-      - run: BRANCH_NAME="release/1.23"
-      - run: echo "Branch 1 - ${BRANCH_NAME}"
+      - run: echo "Branch 1 - ${{ github.ref }}"
       
