@@ -30,8 +30,8 @@ jobs:
                  echo "AUTO_INCREMENT_TAG=patch" >> $GITHUB_ENV
               else 
                 echo "Unidentified branch"
-                stopMarker=$(uuidgen)
-                echo "::stop-commands::$stopMarker"
+                echo "::notice file={name},line={line},endLine={endLine},title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
+
               fi
           
       - run: echo "BRANCH_TAG_VERSION - ${{ env.BRANCH_TAG_VERSION }}"
