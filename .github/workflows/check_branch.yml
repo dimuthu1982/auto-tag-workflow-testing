@@ -5,7 +5,7 @@ jobs:
   find-tag-name:
      runs-on: ubuntu-latest
      outputs:
-       tag_by_release_branch: ${{steps.branch.outputs.tag_by_release_branch}}
+       tag_by_release_branch: ${{steps.tag.outputs.tag_by_release_branch}}
        TAG_BY_BRANCH: ${{steps.branch.outputs.tag_by_branch}}
      steps: 
       #- name: Find Tag Version
@@ -13,12 +13,12 @@ jobs:
       #  uses: actions/checkout@v4
       #- run: echo "Branch 1 - ${{ github.ref }}"
       - name: Find Tag Name
-        id: branch
+        id: tag
         run: | 
                   BRANCH="release/1.2.3"
                   if [[ $BRANCH == release/* ]]; then
                     echo "tag_by_release_branch=${BRANCH/'release/'}" >> "$GITHUB_OUTPUT"
-                    echo "Manual Tag - ${TAG_BY_RELEASE_BRANCH}"
+                    echo "Manual Tag - ${tag_by_release_branch}"
                   elif [[ $BRANCH == release ]]; then 
                     echo "tag_by_branch=minor" >> "$GITHUB_OUTPUT"
                     echo "Release branch"
@@ -28,8 +28,9 @@ jobs:
                   else 
                     echo "Unidentified branch"
                     echo "::notice title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
-    
                   fi
+      - name: Print Values              
+        run: echo" tag_by_release_branch - ${{needs.find-tag-name.outputs.tag_by_release_branch}}"
       
   #Find-Tag-By-Release-Branch:
   #  name: Find Tag By Release Branch
