@@ -56,7 +56,8 @@ jobs:
         with:
           use_api: true
           increment: $release_type
-          run: echo "Next Tag- ${{steps.version.outputs.v-version}}"
+      
+      - run: echo "Next Tag- ${{steps.version.outputs.v-version}}"
       
  
 
