@@ -29,8 +29,8 @@ jobs:
                     echo "Unidentified branch"
                     echo "::notice title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
                   fi
-      - name: Print Values              
-        run: echo" tag_by_release_branch - ${{jobs.find-tag-name.outputs.tag_by_release_branch}}"
+      #- name: Print Values              
+      #  run: echo" tag_by_release_branch - ${{jobs.find-tag-name.outputs.tag_by_release_branch}}"
       
   Find-Tag-By-Release-Branch:
     name: Find Tag By Release Branch
