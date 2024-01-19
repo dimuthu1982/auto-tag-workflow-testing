@@ -21,14 +21,14 @@ jobs:
               BRANCH="release/1.1.2"
               echo "Step 2"
               echo "Step 2 ${BRANCH}"
-              if [[ $BRANCH == "release/*" ]]; then  
+              if [[ ${BRANCH} == "release/*" ]]; then  
               echo "Step 3"
                 BRANCH_TAG_VERSION="${BRANCH/'release/'}"
                 echo "BRANCH_TAG_VERSION - ${BRANCH_TAG_VERSION}"
-              elif [[ $BRANCH == "release" ]]; then 
+              elif [[ ${BRANCH} == "release" ]]; then 
               echo "Step 4"
                 echo "Release branch"
-              elif [[ BRANCH == "hotfix" ]]; then 
+              elif [[ ${BRANCH} == "hotfix" ]]; then 
                 echo "Hotfix branch"
               else 
                 echo "Unidentifyed branch"
