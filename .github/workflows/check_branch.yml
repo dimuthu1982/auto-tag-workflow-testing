@@ -16,7 +16,7 @@ jobs:
         if: ${{ startsWith(github.ref, 'release/') }}
       - run: echo "Extract the version from the branch"
       - run: | 
-              echo "In the Script file......."
+              echo "In the Script file.......b"
         
         
       - name: Is Release Branch
