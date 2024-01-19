@@ -25,7 +25,7 @@ jobs:
               elif [[ $BRANCH == release ]]; then 
                 env.AUTO_INCREMENT_TAG="minor"
                 echo "Release branch"
-              elif [[ ${BRANCH} == hotfix ]]; then 
+              elif [[ $BRANCH == hotfix ]]; then 
                 echo "Hotfix branch"
                  env.AUTO_INCREMENT_TAG="patch"
               else 
