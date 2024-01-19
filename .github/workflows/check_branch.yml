@@ -14,7 +14,7 @@ jobs:
       - run: echo "Branch 1 - ${{ github.ref }}"
       - name: Find Tag Name
         uses: actions/checkout@v4
-      - id: branch
+      #- id: branch
       - run: | 
                 BRANCH="release/1.2.3"
                 if [[ $BRANCH == release/* ]]; then
