@@ -30,8 +30,8 @@ jobs:
               else 
                 echo "Unidentified branch"
               fi
-      - run: echo "BRANCH_TAG_VERSION - ${BRANCH_TAG_VERSION}"
-      - run: echo "AUTO_INCREMENT_TAG - ${AUTO_INCREMENT_TAG}"
+      - run: echo "BRANCH_TAG_VERSION - ${{ BRANCH_TAG_VERSION }}"
+      - run: echo "AUTO_INCREMENT_TAG - ${{ AUTO_INCREMENT_TAG }}"
         
      # - name: Is Release Branch
      #   if: ${{ contains(github.ref, 'release') }}
