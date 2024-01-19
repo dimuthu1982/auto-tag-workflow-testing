@@ -20,14 +20,14 @@ jobs:
       - run: | 
               BRANCH="release/1.1.2"
               if [[ $BRANCH == release/* ]]; then
-                env.BRANCH_TAG_VERSION="${BRANCH/'release/'}"
+                vars.BRANCH_TAG_VERSION="${BRANCH/'release/'}"
                 echo "BRANCH_TAG_VERSION - ${env.BRANCH_TAG_VERSION}"
               elif [[ $BRANCH == release ]]; then 
-                env.AUTO_INCREMENT_TAG="minor"
+                vars.AUTO_INCREMENT_TAG="minor"
                 echo "Release branch"
               elif [[ $BRANCH == hotfix ]]; then 
                 echo "Hotfix branch"
-                 env.AUTO_INCREMENT_TAG="patch"
+                 vars.AUTO_INCREMENT_TAG="patch"
               else 
                 echo "Unidentified branch"
               fi
