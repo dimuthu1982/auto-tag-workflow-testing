@@ -18,7 +18,8 @@ jobs:
       - run: echo "Extract the version from the branch"
       - run: | 
               echo "In the Script"
-              BRANCH_TAG_VERSION="${{ github.ref }}/'release/'"
+              BRANCH="release/1.1.2"
+              BRANCH_TAG_VERSION="${BRANCH/'release/'}"
               echo "tagVersion : ${BRANCH_TAG_VERSION}"
         
         
