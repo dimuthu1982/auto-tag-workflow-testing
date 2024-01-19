@@ -1,0 +1,9 @@
+name: Branch Check
+run-name: Branch Check
+on: [push]
+jobs:
+  Check-Branch-Name:
+     runs-on: ubuntu-latest
+     steps: 
+      - name: Checck Branch name
+        - run: echo "Name: ${{github.head_ref}}"
