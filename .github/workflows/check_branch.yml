@@ -14,23 +14,23 @@ jobs:
       - run: echo "Branch 1 - ${{ github.ref }}"
       - name: Find Tag Name
         uses: actions/checkout@v4
-      #- id: branch
-      - run: | 
-                BRANCH="release/1.2.3"
-                if [[ $BRANCH == release/* ]]; then
-                  echo "tag_by_release_branch=${BRANCH/'release/'}" >> "$GITHUB_OUTPUT"
-                  echo "Manual Tag - ${TAG_BY_RELEASE_BRANCH}"
-                elif [[ $BRANCH == release ]]; then 
-                  echo "tag_by_branch=minor" >> "$GITHUB_OUTPUT"
-                  echo "Release branch"
-                elif [[ $BRANCH == hotfix ]]; then 
-                  echo "Hotfix branch"
-                   echo "tag_by_branch=patch" >> "$GITHUB_OUTPUT"
-                else 
-                  echo "Unidentified branch"
-                  echo "::notice title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
-  
-                fi
+      - id: branch
+        run: | 
+                  BRANCH="release/1.2.3"
+                  if [[ $BRANCH == release/* ]]; then
+                    echo "tag_by_release_branch=${BRANCH/'release/'}" >> "$GITHUB_OUTPUT"
+                    echo "Manual Tag - ${TAG_BY_RELEASE_BRANCH}"
+                  elif [[ $BRANCH == release ]]; then 
+                    echo "tag_by_branch=minor" >> "$GITHUB_OUTPUT"
+                    echo "Release branch"
+                  elif [[ $BRANCH == hotfix ]]; then 
+                    echo "Hotfix branch"
+                     echo "tag_by_branch=patch" >> "$GITHUB_OUTPUT"
+                  else 
+                    echo "Unidentified branch"
+                    echo "::notice title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
+    
+                  fi
           
       - run: echo "TAG_BY_RELEASE_BRANCH - ${{ env.TAG_BY_RELEASE_BRANCH }}"
       - run: echo "AUTO_INCREMENT_TAG - ${{ env.AUTO_INCREMENT_TAG }}"
