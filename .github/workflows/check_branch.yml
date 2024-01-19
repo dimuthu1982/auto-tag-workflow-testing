@@ -32,9 +32,6 @@ jobs:
               else 
                 echo "Unidentified branch"
               fi
-        env:
-          BRANCH_TAG_VERSION: ${{ BRANCH_TAG_VERSION }}
-          AUTO_INCREMENT_TAG: ${{ vars.AUTO_INCREMENT_TAG }}
           
       - run: echo "BRANCH_TAG_VERSION - ${BRANCH_TAG_VERSION1}"
       - run: echo "AUTO_INCREMENT_TAG - ${vars.AUTO_INCREMENT_TAG}"
