@@ -16,7 +16,7 @@ jobs:
       - name: Find Tag Name
         id: tag
         run: | 
-                  BRANCH="bugfix"
+                  BRANCH="hotfix"
                   if [[ $BRANCH == release/* ]]; then
                     echo "release_version=${BRANCH/'release/'}" >> $GITHUB_OUTPUT
                   elif [[ $BRANCH == release ]]; then 
