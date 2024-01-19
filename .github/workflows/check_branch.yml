@@ -2,48 +2,53 @@ name: Branch Check
 run-name: Create Version Tag
 on: [push]
 jobs:
-  Find-Tag-Name:
+  find-tag-name:
      runs-on: ubuntu-latest
+     outputs:
+       tag_by_release_branch: ${{steps.branch.outputs.tag_by_release_branch}}
+       TAG_BY_BRANCH: ${{steps.branch.outputs.tag_by_branch}}
      steps: 
       - name: Find Tag Version
+      - id: tag
         uses: actions/checkout@v4
       - run: echo "Branch 1 - ${{ github.ref }}"
-      
       - name: Find Tag Name
         uses: actions/checkout@v4
+      - id: branch
       - run: | 
-              BRANCH="bugfix"
-              if [[ $BRANCH == release/* ]]; then
-                echo "TAG_BY_RELEASE_BRANCH=${BRANCH/'release/'}" >> $GITHUB_ENV
-                echo "Manual Tag - ${TAG_BY_RELEASE_BRANCH}"
-              elif [[ $BRANCH == release ]]; then 
-                echo "TAG_BY_BRANCH=minor" >> $GITHUB_ENV
-                echo "Release branch"
-              elif [[ $BRANCH == hotfix ]]; then 
-                echo "Hotfix branch"
-                 echo "TAG_BY_BRANCH=patch" >> $GITHUB_ENV
-              else 
-                echo "Unidentified branch"
-                echo "::notice title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
-
-              fi
+                BRANCH="release/1.2.3"
+                if [[ $BRANCH == release/* ]]; then
+                  echo "tag_by_release_branch=${BRANCH/'release/'}" >> "$GITHUB_OUTPUT"
+                  echo "Manual Tag - ${TAG_BY_RELEASE_BRANCH}"
+                elif [[ $BRANCH == release ]]; then 
+                  echo "tag_by_branch=minor" >> "$GITHUB_OUTPUT"
+                  echo "Release branch"
+                elif [[ $BRANCH == hotfix ]]; then 
+                  echo "Hotfix branch"
+                   echo "tag_by_branch=patch" >> "$GITHUB_OUTPUT"
+                else 
+                  echo "Unidentified branch"
+                  echo "::notice title={Unknown branch ${BRANCH}}::{Unknown branch merged to master}"
+  
+                fi
           
       - run: echo "TAG_BY_RELEASE_BRANCH - ${{ env.TAG_BY_RELEASE_BRANCH }}"
       - run: echo "AUTO_INCREMENT_TAG - ${{ env.AUTO_INCREMENT_TAG }}"
       
-  Increment-Tag-By-Release-Branch:
-    if:  ${{ env.TAG_BY_RELEASE_BRANCH }}
-    name: Apply Tag By Release Branch
+  Find-Tag-By-Release-Branch:
+    if:  ${{ jobs.find-tag-name.outputs.tag_by_release_branch }}
+    name: Find Tag By Release Branch
     runs-on: ubuntu-latest
-    steps: 
-      - run: echo "===== Tag By Release version- ${{ env.TAG_BY_RELEASE_BRANCH }} "
+    needs: find-tag-name
+    steps:
+      - run: echo "===== Tag By Release version- ${{ jobs.find-tag-name.steps.tag.outputs.TAG_BY_RELEASE_BRANCH }} "
 
-  Increment-Tag-By-Branch-Name:
-    if:  ${{ env.TAG_BY_BRANCH }}
-    name: Increment
-    runs-on: ubuntu-latest
-    steps: 
-      - run: echo "===== Tag By Branch - ${{ env.TAG_BY_BRANCH }} "
+  #Find-Tag-By-Branch-Name:
+  #  if:  ${{ env.TAG_BY_BRANCH }}
+  #  name: Find Tag By Branch Name
+   # runs-on: ubuntu-latest
+   # steps: 
+   #   - run: echo "===== Tag By Branch - ${{ env.TAG_BY_BRANCH }} "
       
  
 
