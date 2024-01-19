@@ -1,5 +1,5 @@
 env:
-  BRANCH: release
+  BRANCH_1: release
   
 name: Branch Check
 run-name: Branch Check
@@ -12,13 +12,13 @@ jobs:
         uses: actions/checkout@v4
       - run: echo "Branch 1 - ${{ github.ref }}"
       
-      - name: Is Branch Comes With A Tag
-        if: ${{ startsWith(github.ref, 'release/') }}
+      - name: Check Branch Type
+        #if: ${{ startsWith(github.ref, 'release/') }}
         uses: actions/checkout@v4
       - run: echo "Extract the version from the branch"
       - run: | 
               BRANCH="release/1.1.2"
-              if [[BRANCH == "release/*"]]; then  
+              if [[ BRANCH == "release/*" ]]; then  
                 BRANCH_TAG_VERSION="${BRANCH/'release/'}"
                 echo "BRANCH_TAG_VERSION - ${BRANCH_TAG_VERSION}"
               elif [[BRANCH == "release"]]; then 
