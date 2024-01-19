@@ -18,18 +18,19 @@ jobs:
         uses: actions/checkout@v4
       #- run: echo "Extract the version from the branch"
       - run: | 
-              BRANCH="release"
+              BRANCH="bugfix"
               if [[ $BRANCH == release/* ]]; then
                 echo "BRANCH_TAG_VERSION=${BRANCH/'release/'}" >> $GITHUB_ENV
                 echo "BRANCH_TAG_VERSION v1 - ${BRANCH_TAG_VERSION}"
               elif [[ $BRANCH == release ]]; then 
-                echo "AUTO_INCREMENT_TAG='minor'" >> $GITHUB_ENV
+                echo "AUTO_INCREMENT_TAG=minor" >> $GITHUB_ENV
                 echo "Release branch"
               elif [[ $BRANCH == hotfix ]]; then 
                 echo "Hotfix branch"
-                 echo "AUTO_INCREMENT_TAG='patch'" >> $GITHUB_ENV
+                 echo "AUTO_INCREMENT_TAG=patch" >> $GITHUB_ENV
               else 
                 echo "Unidentified branch"
+                echo "::stop-commands::$stopMarker"
               fi
           
       - run: echo "BRANCH_TAG_VERSION - ${{ env.BRANCH_TAG_VERSION }}"
