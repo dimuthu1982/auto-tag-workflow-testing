@@ -3,7 +3,7 @@ env:
   AUTO_INCREMENT_TAG: minor
   
 name: Branch Check
-run-name: Create Tag
+run-name: Create Version Tag
 on: [push]
 jobs:
   Check-Branch-Name:
@@ -20,22 +20,23 @@ jobs:
       - run: | 
               BRANCH="release/1.1.2"
               if [[ $BRANCH == release/* ]]; then
-                vars.BRANCH_TAG_VERSION="${BRANCH/'release/'}"
-                echo "BRANCH_TAG_VERSION - ${vars.BRANCH_TAG_VERSION}"
+                BRANCH_TAG_VERSION="${BRANCH/'release/'}"
+                echo "BRANCH_TAG_VERSION - ${BRANCH_TAG_VERSION}"
+                echo "${BRANCH_TAG_VERSION}" >> BRANCH_TAG_VERSION1
               elif [[ $BRANCH == release ]]; then 
-                vars.AUTO_INCREMENT_TAG="minor"
+                AUTO_INCREMENT_TAG="minor"
                 echo "Release branch"
               elif [[ $BRANCH == hotfix ]]; then 
                 echo "Hotfix branch"
-                 vars.AUTO_INCREMENT_TAG="patch"
+                 AUTO_INCREMENT_TAG="patch"
               else 
                 echo "Unidentified branch"
               fi
         env:
-          BRANCH_TAG_VERSION: ${{ vars.BRANCH_TAG_VERSION }}
+          BRANCH_TAG_VERSION: ${{ BRANCH_TAG_VERSION }}
           AUTO_INCREMENT_TAG: ${{ vars.AUTO_INCREMENT_TAG }}
           
-      - run: echo "BRANCH_TAG_VERSION - ${vars.BRANCH_TAG_VERSION}"
+      - run: echo "BRANCH_TAG_VERSION - ${BRANCH_TAG_VERSION1}"
       - run: echo "AUTO_INCREMENT_TAG - ${vars.AUTO_INCREMENT_TAG}"
         
      # - name: Is Release Branch
