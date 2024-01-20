@@ -7,7 +7,7 @@ jobs:
      steps: 
       - name: set Version
         id: set_branch
-        run: echo BRANCH="release" >> $GITHUB_OUTPUT
+        run: echo BRANCH="hotfix" >> $GITHUB_OUTPUT
       - name: Is Tag Version In Release Branch
         if: ${{ startsWith(steps.set_branch.outputs.BRANCH, 'release/') }}
         run: echo "Release Branch with version"
