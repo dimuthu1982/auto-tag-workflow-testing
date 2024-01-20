@@ -13,7 +13,7 @@ jobs:
         if: ${{ startsWith(steps.set_branch.outputs.BRANCH, 'release/') }}
         run: |
             echo "Release Branch with version"
-            echo "TAG_NAME=${startsWith(steps.set_branch.outputs.BRANCH/'release/'}" >> $GITHUB_ENV
+            echo "TAG_NAME=${steps.set_branch.outputs.BRANCH/'release/'}" >> $GITHUB_ENV
       - name: Is Release Branch
         if: ${{ endsWith(steps.set_branch.outputs.BRANCH, 'release') }}
         run: echo "Release Branch Minor Release"
