@@ -1,5 +1,5 @@
 env:
-  TAG_NAME: "-"
+  TAG_NAME1: "-"
 
 name: Branch Check
 run-name: Create Version Tag
@@ -20,6 +20,7 @@ jobs:
         id: tag
         run: | 
                   BRANCH="release"
+                  echo "TAG_NAME1=DKSsdcdccdcd"
                   if [[ $BRANCH == release/* ]]; then
                     echo "TAG_NAME=${BRANCH/'release/'}" >> $GITHUB_ENV
                   elif [[ $BRANCH == release ]]; then 
@@ -72,6 +73,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: find-next-tag-by-merge-branch
     steps:
-      #- run: echo "Tag Version - ${{TAG_NAME}}"
+      - run: echo "Tag TAG_NAME1 - ${{env.TAG_NAME1}}"
       - run: echo "Tag Version1 - ${{env.TAG_NAME}}"
       - run: echo "DKA - $DKA"
