@@ -1,3 +1,6 @@
+env:
+  TAG_NAME: "-"
+
 name: Branch Check
 run-name: Create Version Tag
 on: [push]
@@ -69,6 +72,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: find-next-tag-by-merge-branch
     steps:
-      - run: echo "Tag Version - ${[TAG_NAME}]"
+      - run: echo "Tag Version - ${{TAG_NAME}}"
       - run: echo "Tag Version1 - ${{env.TAG_NAME}}"
       - run: echo "DKA - $DKA"
