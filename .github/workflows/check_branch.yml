@@ -48,7 +48,7 @@ jobs:
     steps:
       - env:
           release_type: ${{needs.find-tag-name.outputs.release_type}}
-        run: echo "=====  Branch Type - $release_type"
+        run: echo "=====  Branch Type - ($release_type)"
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Find Next Tag
