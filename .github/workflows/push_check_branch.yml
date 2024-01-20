@@ -7,9 +7,9 @@ jobs:
      steps: 
       - name: Is Tag Version In Release Branch
         run: BRANCH="release/1.2.3"
-        if: ${{ startsWith($BRANCH, 'release/') }}
+        if: ${{ startsWith(BRANCH, 'release/') }}
       - run: echo "Release Branch with version"
-        if: ${{ endsWith($BRANCH, 'release') }}
+        if: ${{ endsWith(BRANCH, 'release') }}
       - run: echo "Release Branch Minor Release"
-        if: ${{ endsWith($BRANCH, 'hotfix') }}
+        if: ${{ endsWith(BRANCH, 'hotfix') }}
       - run: echo "Release Branch Patch Release"
