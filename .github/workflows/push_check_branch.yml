@@ -6,7 +6,7 @@ jobs:
      runs-on: ubuntu-latest
      steps: 
       - name: Is Tag Version In Release Branch
-        run: BRANCH="release/1.2.3
+        run: BRANCH="release/1.2.3"
         if: ${{ startsWith($BRANCH, 'release/') }}
       - run: echo "Release Branch with version"
         if: ${{ endsWith($BRANCH, 'release') }}
