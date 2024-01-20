@@ -5,12 +5,14 @@ jobs:
   Check-Branch-Name:
      runs-on: ubuntu-latest
      steps: 
+      - run: BRANCH="release/1.2.3" >> $GITHUB_OUTPUT
       - name: Is Tag Version In Release Branch
         id: set_branch
-        run: BRANCH="release/1.2.3" >> $GITHUB_OUTPUT
         if: ${{ startsWith(steps.set_branch.outputs.BRANCH, 'release/') }}
-      - run: echo "Release Branch with version"
+        run: echo "Release Branch with version"
+      - name: Is Release Branch
         if: ${{ endsWith(steps.set_branch.outputs.BRANCH, 'release') }}
-      - run: echo "Release Branch Minor Release"
+        run: echo "Release Branch Minor Release"
+      - name: Is Hotfix Branch
         if: ${{ endsWith(steps.set_branch.outputs.BRANCH, 'hotfix') }}
-      - run: echo "Release Branch Patch Release"
+        run: echo "Release Branch Patch Release"
