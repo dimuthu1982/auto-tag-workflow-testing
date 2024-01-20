@@ -6,7 +6,7 @@ jobs:
      name: Find Tag By Branch
      runs-on: ubuntu-latest
      outputs:
-       release_version: ${{steps.tag.outputs.release_version}}
+       #release_version: ${{steps.tag.outputs.release_version}}
        release_type: ${{steps.tag.outputs.release_type}}
      steps: 
       #- name: Find Tag Version
@@ -18,7 +18,7 @@ jobs:
         run: | 
                   BRANCH="release"
                   if [[ $BRANCH == release/* ]]; then
-                    echo "release_version=${BRANCH/'release/'}" >> $GITHUB_OUTPUT
+                    echo "TAG_NAME=${BRANCH/'release/'}" >> $GITHUB_ENV
                   elif [[ $BRANCH == release ]]; then 
                     echo "release_type=minor" >> $GITHUB_OUTPUT
                   elif [[ $BRANCH == hotfix ]]; then 
@@ -40,7 +40,7 @@ jobs:
   #        tag_version: ${{needs.find-tag-name.outputs.release_version}}
   #      run: echo "===== Next Tag Version - $tag_version"
 
-  Find-Next-Tag-By-Merge-Branch:
+  find-next-tag-by-merge-branch:
     name: Find Next Tag By Merge Branch
     if:  ${{ needs.find-tag-name.outputs.release_type }}
     runs-on: ubuntu-latest
@@ -58,4 +58,10 @@ jobs:
           use_api: true
           increment: ${{needs.find-tag-name.outputs.release_type}}
       
-      - run: echo "Next Tag v1 - ${{steps.version.outputs.v-version}}"
+      - run: echo "TAG_NAME=${{steps.version.outputs.v-version}} >> $GITHUB_ENV"
+      
+  tag-branch:
+    name: Tag Branch
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Tag Version - $TAG_NAME"
