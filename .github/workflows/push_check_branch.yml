@@ -17,8 +17,8 @@ jobs:
         if: ${{ startsWith(env.BRANCH, 'release/') }}
         run: |
             echo "Release Branch with version"
-            echo "Release Branch Name - env.BRANCH"
-            echo "TAG_NAME=${env.BRANCH/'release/'}" >> $GITHUB_ENV
+            echo "Release Branch Name - $env.BRANCH"
+            echo "TAG_NAME=${$env.BRANCH/'release/'}" >> $GITHUB_ENV
             echo "Prinitng tagmname - $TAG_NAME"
       - name: Is Release Branch
         if: ${{ endsWith(env.BRANCH, 'release') }}
