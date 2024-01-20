@@ -6,10 +6,11 @@ jobs:
      runs-on: ubuntu-latest
      steps: 
       - name: Is Tag Version In Release Branch
-        run: echo "BRANCH='release/1.2.3'"
-        if: ${{ startsWith($BRANCH, 'release/') }}
+        id: set_branch
+        run: BRANCH="release/1.2.3" >> $GITHUB_OUTPUT
+        if: ${{ startsWith(steps.set_branch.outputs.BRANCH, 'release/') }}
       - run: echo "Release Branch with version"
-        if: ${{ endsWith($BRANCH, 'release') }}
+        if: ${{ endsWith(steps.set_branch.outputs.BRANCH, 'release') }}
       - run: echo "Release Branch Minor Release"
-        if: ${{ endsWith($BRANCH, 'hotfix') }}
+        if: ${{ endsWith(steps.set_branch.outputs.BRANCH, 'hotfix') }}
       - run: echo "Release Branch Patch Release"
