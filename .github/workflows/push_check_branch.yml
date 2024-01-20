@@ -10,16 +10,16 @@ jobs:
         run: echo BRANCH="release/1.2.3" >> $GITHUB_ENV
       - name: Is Tag Version In Release Branch
         id: branch_tag
-        if: ${{ startsWith(BRANCH, 'release/') }}
+        if: ${{ startsWith($BRANCH, 'release/') }}
         run: |
             echo "Release Branch with version"
             echo "Release Branch Name - $BRANCH"
-            echo "TAG_NAME=${BRANCH/'release/'}" >> $GITHUB_ENV
+            echo "TAG_NAME=${$BRANCH/'release/'}" >> $GITHUB_ENV
       - name: Is Release Branch
-        if: ${{ endsWith(BRANCH, 'release') }}
+        if: ${{ endsWith($BRANCH, 'release') }}
         run: echo "Release Branch Minor Release"
       - name: Is Hotfix Branch
-        if: ${{ endsWith(BRANCH, 'hotfix') }}
+        if: ${{ endsWith($BRANCH, 'hotfix') }}
         run: echo "Release Branch Patch Release"
 
       - name: Printing Tag
