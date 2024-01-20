@@ -1,0 +1,11 @@
+name: Branch Check
+run-name: Branch Check
+on: [push]
+jobs:
+  Check-Branch-Name:
+     runs-on: ubuntu-latest
+     steps: 
+      - name: Is Tag Version In Release Branch
+        run: echo "BRANCH="release/1.2.3"
+        if: ${{ startsWith(BRANCH, 'release/') }}
+          - run: echo "Release Branch with version"
