@@ -60,6 +60,9 @@ jobs:
       
       - run: echo echo "TAG_NAME=$(echo ${{steps.version.outputs.v-version}})" >> $GITHUB_ENV
       - run: echo "DKA=123456" >> $GITHUB_ENV
+        env:
+          TAG_NAME: ${{steps.version.outputs.v-version}}
+          
   tag-branch:
     name: Tag Branch
     runs-on: ubuntu-latest
