@@ -56,7 +56,7 @@ jobs:
         id: version
         with:
           use_api: true
-          increment: patch
+          increment: minor
           release_branch: main
       
       - run: echo "Next Tag- ${{steps.version.outputs.v-version}}"
