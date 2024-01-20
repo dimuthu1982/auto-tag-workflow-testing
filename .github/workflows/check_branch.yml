@@ -58,7 +58,7 @@ jobs:
           use_api: true
           increment: ${{needs.find-tag-name.outputs.release_type}}
       
-      - run: echo "TAG_NAME=${{steps.version.outputs.v-version}} >> $GITHUB_ENV"
+      - run: echo "TAG_NAME=${{steps.version.outputs.v-version}}" >> $GITHUB_ENV
       
   tag-branch:
     name: Tag Branch
