@@ -7,13 +7,21 @@ jobs:
      steps: 
       - name: set Version
         id: set_branch
-        run: echo BRANCH="hotfix" >> $GITHUB_OUTPUT
+        run: echo BRANCH="release/1.2.3" >> $GITHUB_OUTPUT
       - name: Is Tag Version In Release Branch
+        id: branch_tag
         if: ${{ startsWith(steps.set_branch.outputs.BRANCH, 'release/') }}
-        run: echo "Release Branch with version"
+        run: |
+            echo "Release Branch with version"
+            echo "TAG_NAME=${startsWith(steps.set_branch.outputs.BRANCH/'release/'}" >> $GITHUB_ENV
       - name: Is Release Branch
         if: ${{ endsWith(steps.set_branch.outputs.BRANCH, 'release') }}
         run: echo "Release Branch Minor Release"
       - name: Is Hotfix Branch
         if: ${{ endsWith(steps.set_branch.outputs.BRANCH, 'hotfix') }}
         run: echo "Release Branch Patch Release"
+
+      - name: Printing Tag
+        run: | 
+          echo "Release Tag - ${{steps.set_branch.outputs.TAG_NAME}}"
+           echo "Release TAG_NAME - $TAG_NAME"
