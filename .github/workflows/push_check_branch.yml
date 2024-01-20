@@ -24,4 +24,5 @@ jobs:
 
       - name: Printing Tag
         run: | 
+           echo "Release TAG_NAME - $BRANCH"
            echo "Release TAG_NAME - $TAG_NAME"
