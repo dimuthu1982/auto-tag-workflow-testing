@@ -59,9 +59,11 @@ jobs:
           increment: ${{needs.find-tag-name.outputs.release_type}}
       
       - run: echo echo "TAG_NAME=$(echo ${{steps.version.outputs.v-version}})" >> $GITHUB_ENV
+      - run: echo "DKA=123456" >> $GITHUB_ENV
   tag-branch:
     name: Tag Branch
     runs-on: ubuntu-latest
     needs: find-next-tag-by-merge-branch
     steps:
       - run: echo "Tag Version - $TAG_NAME"
+      - run: echo "DKA - $DKA"
