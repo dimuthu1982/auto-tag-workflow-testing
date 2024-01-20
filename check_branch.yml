@@ -28,3 +28,33 @@ jobs:
         run: echo "Patch Version"
         
       
+env:
+  BRANCH: release
+  
+name: Branch Check
+run-name: Branch Check
+on: [push]
+jobs:
+  Check-Branch-Name:
+     runs-on: ubuntu-latest
+     steps: 
+      - name: Creating Tag
+        uses: actions/checkout@v4
+      - run: echo "Branch 1 - ${{ github.ref }}"
+      
+      - name: Is Branch Comes With A Tag
+        if: ${{ startsWith(github.ref, 'release/') }}
+      - run: echo "Extract the version from the branch"
+      - run: | 
+              echo "In the Script file......."
+        
+        
+      - name: Is Release Branch
+        if: ${{ contains(github.ref, 'release') }}
+        run: echo "Minor Version"
+        
+      - name: Is Hotfix Branch
+        if: ${{ contains(github.ref, 'hotfix') }}
+        run: echo "Patch Version"
+        
+      
