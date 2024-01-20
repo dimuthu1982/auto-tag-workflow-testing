@@ -61,7 +61,7 @@ jobs:
       - run: echo "Next Version inline - ${{steps.version.outputs.v-version}}"
       - run: echo "TAG_NAME=$(echo ${{steps.version.outputs.v-version}})" >> $GITHUB_ENV
       - run: echo "DKA=123456" >> $GITHUB_ENV
-      - env:
+        env:
           TAG_NAME: ${{steps.version.outputs.v-version}}
           
   tag-branch:
