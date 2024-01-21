@@ -32,16 +32,16 @@ jobs:
       - name: Is branch wihout a version
         id: branch_release
         run: |
-          echo BRANCH_NEW="release" >> $GITHUB_ENV
-          if [[ $BRANCH_NEW == release ]]; then 
+           BRANCH_NEW="release" 
+           if [[ $BRANCH_NEW == release ]]; then 
             echo "Identifyed as RELEASE, minor"
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
-          elif [[ $BRANCH_NEW == hotfix ]]; then 
+           elif [[ $BRANCH_NEW == hotfix ]]; then 
             echo "Identifyed as HOTFIX, patch"
             echo "RELEASE_TYPE=patch" >> $GITHUB_OUTPUT
-          else 
+           else 
             exit 0;
-          fi
+           fi
 
       - name: Initiating Next Version Lookup @
         uses: actions/checkout@v4
