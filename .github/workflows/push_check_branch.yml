@@ -8,7 +8,7 @@ jobs:
      name: Find Tag Name In Branch
      runs-on: ubuntu-latest
      outputs:
-       TAG_NAME: ${{steps.tag.outputs.TAG}}
+       TAG_NAME: ${{steps.branch_tag.outputs.TAG}}
      steps: 
       - name: set Version
         id: set_branch
@@ -21,6 +21,7 @@ jobs:
         run: |
             echo "Release Branch with version"
             echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_ENV
+            echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_OUTPUT
 
   find-tag-by-branch:
     if:  ${{ !needs.find-tag-in-branch.outputs.TAG_NAME }}
