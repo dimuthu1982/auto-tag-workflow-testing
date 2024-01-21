@@ -1,5 +1,5 @@
 env:
-  BRANCH: release/1.2.3
+  BRANCH: release
 name: Branch Check
 run-name: Branch Check
 on: [push]
