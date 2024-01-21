@@ -18,7 +18,7 @@ jobs:
         run: |
             echo "Release Branch with version"
             echo "Release Branch Name - ${{env.BRANCH}}"
-            echo "TTTT=release/1.2.3${{env.BRANCH}}"
+            echo "TTTT=${{env.BRANCH}}"
             echo "TAG_NAME=${TTTT}/'release/'}" >> "$GITHUB_ENV"
             echo "TAG_NAME1=${TTTT}/'release/'}" >> "GITHUB_OUTPUT"
             echo "Prinitng tag name - $TTTT"
