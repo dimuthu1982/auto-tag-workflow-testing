@@ -9,15 +9,17 @@ jobs:
      runs-on: ubuntu-latest
      steps: 
       - name: set Version
-      #  id: set_branch
-      #  run: echo BRANCH="release/1.2.3" >> $GITHUB_ENV
-        run: echo " ENV Branch - ${{env.BRANCH}}"
+        id: set_branch
+        run: | 
+          echo BRANCH_NEW="release/1.2.3" >> $GITHUB_ENV
+          echo "Branch: $BRANCH_NEW"
+        
       - name: Is Tag Version In Release Branch
         id: branch_tag
         if: ${{ startsWith(env.BRANCH, 'release/') }}
         run: |
             echo "Release Branch with version"
-            echo "Release Branch Name - ${{env.BRANCH}}"
+            echo "Release Branch Name (BRANCH_NEW) - ${BRANCH_NEW}"
             echo "TTTT=${{env.BRANCH}}"
             echo "TAG_NAME=${TTTT}/'release/'}" >> "$GITHUB_ENV"
             echo "TAG_NAME1=${TTTT}/'release/'}" >> "GITHUB_OUTPUT"
