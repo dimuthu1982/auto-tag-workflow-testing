@@ -20,7 +20,7 @@ jobs:
         run: |
             echo "Release Branch with version"
             echo "Release Branch Name (BRANCH_NEW) - ${BRANCH_NEW}"
-            echo "TTTT=${{env.BRANCH}}"
+            echo TTTT="${{env.BRANCH}}"
             echo "TAG_NAME=${TTTT/'release/'}" >> $GITHUB_ENV
             echo "TAG_NAME1=${TTTT/'release/'}" >> $GITHUB_OUTPUT
             echo "Prinitng tag name TTT - ${TTTT}"
