@@ -1,5 +1,5 @@
 env:
-  BRANCH: release
+  BRANCH: bugfix
 name: Branch Check
 run-name: Branch Check
 on: [push]
@@ -13,7 +13,7 @@ jobs:
       - name: set Version
         id: set_branch
         run: | 
-          echo BRANCH_NEW="release" >> $GITHUB_ENV
+          echo BRANCH_NEW="bugfix" >> $GITHUB_ENV
           echo "Branch New: ${BRANCH_NEW}"
         
       - name: Is Tag Version In Release Branch
