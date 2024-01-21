@@ -73,5 +73,5 @@ jobs:
     steps:
       - run: echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
       - run: echo "Tag Next Release - ${{needs.find-tag-by-branch.outputs.TAG_NAME}}" 
-      - run: echo "Tag Next Release - ${{env.TAG_NAME_D}}" 
+      - run: echo "Tag Next Release - ${{env.TAG_NAME}}" 
            
