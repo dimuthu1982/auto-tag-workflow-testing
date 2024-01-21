@@ -28,8 +28,6 @@ jobs:
     needs: find-tag-in-branch
     outputs:
        TAG_NAME: ${{steps.version.outputs.TAG_NAME}}
-    env:
-       TAG_NAME_D: ${{steps.version.outputs.version}}
     steps:
       - name: Is branch wihout a version
         id: branch_release
@@ -54,6 +52,8 @@ jobs:
       - run: |
           echo "Next Release - ${{steps.version.outputs.version}}"
           echo "TAG_NAME=${{steps.version.outputs.version}}" >> $GITHUB_OUTPUT
+        env:
+          TAG_NAME: ${{steps.version.outputs.version}}
             
       #- name: Printing Tag
       #  id: tag
