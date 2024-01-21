@@ -38,4 +38,5 @@ jobs:
            echo "Release BRANCH - ${{env.BRANCH}}"
            echo "Release TAG_NAME 1 - ${{steps.branch_tag.outputs.TAG_NAME1}}"
            echo "Release TAG_NAME - ${{steps.branch_tag.outputs.TAG_NAME}}"
-           echo "Release TAG_NAME - $TAG_NAME"
+           echo "Release TAG_NAME - ${TAG_NAME}"
+           echo "Release TAG_NAME1 - ${TAG_NAME1}"
