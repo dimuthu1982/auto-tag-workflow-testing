@@ -26,7 +26,8 @@ jobs:
             echo "Prinitng tag name TTT - ${TTTT}"
              echo "Prinitng tag name TAG_NAME - ${TAG_NAME}"
              echo "Prinitng tag name TAG_NAME1 - ${TAG_NAME1}" 
-             echo version=${TTTT/'release/'}
+             my_branch="release/1.23.4"
+             echo version=${my_branch/'release/'}
              echo "Prinitng version - ${version}" 
       - name: Is Release Branch
         if: ${{ endsWith(env.BRANCH, 'release') }}
