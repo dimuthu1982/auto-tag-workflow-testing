@@ -69,6 +69,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [find-tag-in-branch, find-tag-by-branch]
     steps:
-      - run: echo "Tag TAG_NAME - ${{needs.find-tag-name.outputs.TAG_NAME}}" 
-      - run: echo "Tag TAG_NAME - ${TAG_NAME}" 
+      - run: echo "Tag TAG_NAME - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
+      - run: echo "Tag TAG_NAME - ${TAG_NAME_ENV}" 
            
