@@ -12,7 +12,7 @@ jobs:
         id: set_branch
         run: | 
           echo BRANCH_NEW="release/1.2.3" >> $GITHUB_ENV
-          echo "Branch New: $BRANCH_NEW"
+          echo "Branch New: ${BRANCH_NEW}"
         
       - name: Is Tag Version In Release Branch
         id: branch_tag
@@ -27,7 +27,8 @@ jobs:
              echo "Prinitng tag name TAG_NAME - ${TAG_NAME}"
              echo "Prinitng tag name TAG_NAME1 - ${TAG_NAME1}" 
              my_branch="release/1.23.4"
-             echo version=${my_branch/'release/'}
+             echo "BRANCH_NEW -000000 } ${BRANCH_NEW}"
+             echo version=${BRANCH_NEW/'release/'}
              echo "Prinitng version - ${version}" 
       - name: Is Release Branch
         if: ${{ endsWith(env.BRANCH, 'release') }}
