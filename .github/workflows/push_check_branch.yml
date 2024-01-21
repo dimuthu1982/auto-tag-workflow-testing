@@ -27,9 +27,9 @@ jobs:
         run: |
           echo "Checking Branch for ${BRANCH_NEW}"
           if [[ $BRANCH_NEW == release ]]; then 
-            echo "RELEASE_TYPE=minor" >> $GITHUB_ENV
+            echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
           elif [[ $BRANCH_NEW == hotfix ]]; then 
-            echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
+            echo "RELEASE_TYPE=patch" >> $GITHUB_OUTPUT
           fi
       #- name: Is Release Branch
       #  if: ${{ endsWith(env.BRANCH, 'release') }}
