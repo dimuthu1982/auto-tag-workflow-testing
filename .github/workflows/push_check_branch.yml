@@ -5,7 +5,7 @@ name: Branch Check
 run-name: Branch Check
 on: [push]
 jobs:
-  fin-tag-name:
+  find-tag-name:
      runs-on: ubuntu-latest
      steps: 
       - name: set Version
@@ -34,8 +34,8 @@ jobs:
   create-tag:
     name: Tag Branch
     runs-on: ubuntu-latest
-    needs: fin-tag-name
+    needs: find-tag-name
     steps:
-      - run: echo "Tag TAG_NAME1 - ${{env.TAG_NAME}}"
-      - run: echo "DKA - $DKA"
+      - run: echo "Tag TAG_NAME - ${{env.TAG_NAME}}"
+      - run: echo "Tag TAG_NAME - ${TAG_NAME}"
            
