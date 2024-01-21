@@ -12,7 +12,7 @@ jobs:
         id: set_branch
         run: | 
           echo BRANCH_NEW="release/1.2.3" >> $GITHUB_ENV
-          echo "Branch: $BRANCH_NEW"
+          echo "Branch New: $BRANCH_NEW"
         
       - name: Is Tag Version In Release Branch
         id: branch_tag
