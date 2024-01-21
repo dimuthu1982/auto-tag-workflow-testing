@@ -28,6 +28,7 @@ jobs:
     needs: find-tag-in-branch
     outputs:
        NEXT_TAG_NAME: ${{ steps.version.outputs.NEXT_TAG_NAME }}
+       MY_NAME: ${{steps.tag.outputs.NAME}}
     steps:
       - name: Is branch wihout a version
         id: branch_release
@@ -42,7 +43,6 @@ jobs:
            else 
             exit 0;
            fi
-
       - name: Initiating Next Version Lookup @
         uses: actions/checkout@v4
       - name: Find Next Tag By Branch @
@@ -51,6 +51,12 @@ jobs:
         with:
           use_api: true
           increment: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
+      - name: Set Var
+        id: tag
+        run: |
+                  echo "Prnting form Job 1"
+                  echo "NAME=DKA AAAA" >> $GITHUB_OUTPUT
+                  echo ENABLE=false >> $GITHUB_OUTPUT
       - run: |
           echo "Next Release Type  ->>> ${{ steps.branch_release.outputs.RELEASE_TYPE }}"
           echo "Next Release  ->>> ${{ steps.version.outputs.version }}"
@@ -82,4 +88,5 @@ jobs:
           echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}" 
           echo "Tag Next Release BRANCH_RELEASE ---> $BRANCH_RELEASE" 
           echo "Tag Next Release NEXT_RELEASE ---> $NEXT_RELEASE" 
+          - run: echo "Got Data From - ${{needs.find-tag-by-branch.outputs.MY_NAME}}"
            
