@@ -42,12 +42,10 @@ jobs:
       #      echo "Release Branch Patch Release"
       #      echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
 
-      - run: echo " RELEASE_TYPE ${RELEASE_TYPE}"
-      - run: echo " env.RELEASE_TYPE ${env.RELEASE_TYPE}"
       - run: echo " RELEASE_TYPE STEPS ${{ steps.branch_release.outputs.RELEASE_TYPE }}"
       - name: Initiating Next Version Lookup
         uses: actions/checkout@v4
-        if: env.RELEASE_TYPE
+        if: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
       - name: Find Next Tag By Branch
         uses: reecetech/version-increment@2023.10.1
         with:
