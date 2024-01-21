@@ -37,11 +37,12 @@ jobs:
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
           elif [[ $BRANCH_NEW == hotfix ]]; then 
             echo "RELEASE_TYPE=patch" >> $GITHUB_OUTPUT
+          else 
+            exit 0;
           fi
 
       - name: Initiating Next Version Lookup @
         uses: actions/checkout@v4
-        if: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
       - name: Find Next Tag By Branch @
         id: version
         uses: reecetech/version-increment@2023.10.1
