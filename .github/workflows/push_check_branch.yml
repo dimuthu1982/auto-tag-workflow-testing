@@ -45,8 +45,7 @@ jobs:
            echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
            if [[ $TAG_NAME ]]; then
               echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
-          elif [[ $RELEASE_TYPE ]]; then
-            echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
+           fi
            
 
   create-tag:
