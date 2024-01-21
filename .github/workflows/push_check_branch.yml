@@ -31,11 +31,12 @@ jobs:
             echo "Release Branch Patch Release"
             echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
       - name: Find Next Version By Branch Name
-        if: ${RELEASE_TYPE}
-        uses: reecetech/version-increment@2023.10.1
-        with:
-          use_api: true
-          increment: ${RELEASE_TYPE}
+        run: echo "RELEASE_TYPE - ${RELEASE_TYPE}"
+        #if: ${RELEASE_TYPE}
+        #uses: reecetech/version-increment@2023.10.1
+        #with:
+        #  use_api: true
+        #  increment: ${RELEASE_TYPE}
       
       - run: echo "Next Release - ${{steps.version.outputs.v-version}}"
             
