@@ -88,5 +88,5 @@ jobs:
           echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}" 
           echo "Tag Next Release BRANCH_RELEASE ---> $BRANCH_RELEASE" 
           echo "Tag Next Release NEXT_RELEASE ---> $NEXT_RELEASE" 
-          - run: echo "Got Data From - ${{needs.find-tag-by-branch.outputs.MY_NAME}}"
+          echo "Got Data From - ${{needs.find-tag-by-branch.outputs.MY_NAME}}"
            
