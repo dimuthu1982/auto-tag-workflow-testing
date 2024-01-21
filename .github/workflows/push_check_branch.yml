@@ -34,7 +34,7 @@ jobs:
             echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
       - name: Find Next Version By Branch Name
         #run: echo "RELEASE_TYPE - ${RELEASE_TYPE}"
-        if: ${RELEASE_TYPE}
+        if: false
         uses: reecetech/version-increment@2023.10.1
         with:
           use_api: true
@@ -46,6 +46,7 @@ jobs:
         id: tag
         run: | 
            echo "Release TAG_NAME - ${TAG_NAME}"
+           echo "Release Version RELEASE_TYPE - ${RELEASE_TYPE}"
            echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
            if [[ $TAG_NAME ]]; then
               echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
