@@ -1,11 +1,9 @@
-env:
-  BRANCH: release/1.2.3
-  
 name: Branch Check
 run-name: Branch Check
 on: [push]
 jobs:
   find-tag-name:
+     name: Find Tag Name
      runs-on: ubuntu-latest
      outputs:
        TAG_NAME: ${{steps.tag.outputs.TAG}}
@@ -13,7 +11,7 @@ jobs:
       - name: set Version
         id: set_branch
         run: | 
-          echo BRANCH_NEW="release/1.2.3" >> $GITHUB_ENV
+          echo BRANCH_NEW="release" >> $GITHUB_ENV
           echo "Branch New: ${BRANCH_NEW}"
         
       - name: Is Tag Version In Release Branch
@@ -24,16 +22,32 @@ jobs:
             echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_ENV
       - name: Is Release Branch
         if: ${{ endsWith(env.BRANCH, 'release') }}
-        run: echo "Release Branch Minor Release"
+        run: |
+            echo "Release Branch Minor Release"
+            echo "RELEASE_TYPE=minor" >> $GITHUB_ENV
       - name: Is Hotfix Branch
         if: ${{ endsWith(env.BRANCH, 'hotfix') }}
-        run: echo "Release Branch Patch Release"
-
+        run: |
+            echo "Release Branch Patch Release"
+            echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
+      - name: Find Next Version By Branch Name
+        if: ${{ RELEASE_TYPE }}
+        uses: reecetech/version-increment@2023.10.1
+        with:
+          use_api: true
+          increment: ${{ RELEASE_TYPE }}
+        run: echo "Next Release - ${{steps.version.outputs.v-version}}"
+            
       - name: Printing Tag
         id: tag
         run: | 
            echo "Release TAG_NAME - ${TAG_NAME}"
            echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
+           if [[ $TAG_NAME ]]; then
+              echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
+          elif [[ $RELEASE_TYPE ]]; then
+            echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
+           
 
   create-tag:
     name: Tag Branch
