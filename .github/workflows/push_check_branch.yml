@@ -18,7 +18,7 @@ jobs:
         run: |
             echo "Release Branch with version"
             echo "Release Branch Name - ${{env.BRANCH}}"
-            echo "TAG_NAME=${env.BRANCH}/'release/'}" >> "$GITHUB_ENV"
+            echo "TAG_NAME=${${env.BRANCH}}/'release/'}" >> "$GITHUB_ENV"
             echo "TAG_NAME1=${${env.BRANCH}/'release/'}" >> "GITHUB_OUTPUT"
             echo "Prinitng tag name - $TAG_NAME"
       - name: Is Release Branch
