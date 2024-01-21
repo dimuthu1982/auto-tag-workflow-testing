@@ -55,7 +55,7 @@ jobs:
         id: tag
         run: |
                   echo "Prnting form Job 1"
-                  echo "NAME=DKA AAAA" >> $GITHUB_OUTPUT
+                  echo "NAME=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
                   echo ENABLE=false >> $GITHUB_OUTPUT
       - run: |
           echo "Next Release Type  ->>> ${{ steps.branch_release.outputs.RELEASE_TYPE }}"
