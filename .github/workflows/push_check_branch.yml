@@ -73,8 +73,9 @@ jobs:
       - env:
           BRANCH_RELEASE: ${{needs.find-tag-in-branch.outputs.TAG_NAME}}
           NEXT_RELEASE: ${{needs.find-tag-by-branch.outputs.TAG_NAME}}
-      - run: echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
-      - run: echo "Tag Next Release - ${{needs.find-tag-by-branch.outputs.TAG_NAME}}" 
-      - run: echo "Tag Next Release BRANCH_RELEASE ---> $BRANCH_RELEASE" 
-      - run: echo "Tag Next Release NEXT_RELEASE ---> $NEXT_RELEASE" 
+        run: |
+          echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
+          echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.TAG_NAME}}" 
+          echo "Tag Next Release BRANCH_RELEASE ---> $BRANCH_RELEASE" 
+          echo "Tag Next Release NEXT_RELEASE ---> $NEXT_RELEASE" 
            
