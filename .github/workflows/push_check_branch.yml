@@ -24,7 +24,7 @@ jobs:
             echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_ENV
       - name: Is branch wihout a version
         run: |
-          echo "Checking Branch for $BRANCH_NEW"
+          echo "Checking Branch for ${BRANCH_NEW}"
           if [[ $BRANCH_NEW == release ]]; then 
             echo "RELEASE_TYPE=minor" >> $GITHUB_ENV
           elif [[ $BRANCH_NEW == hotfix ]]; then 
@@ -41,8 +41,7 @@ jobs:
       #      echo "Release Branch Patch Release"
       #      echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
       - name: Find Next Version By Branch Name
-        #run: echo "RELEASE_TYPE - ${RELEASE_TYPE}"
-        if: false
+        if: env.RELEASE_TYPE
         uses: reecetech/version-increment@2023.10.1
         with:
           use_api: true
