@@ -1,5 +1,5 @@
 env:
-  BRANCH: release/1.2.3
+  BRANCH: release
 name: Branch Check
 run-name: Branch Check
 on: [push]
@@ -13,27 +13,26 @@ jobs:
       - name: set Version
         id: set_branch
         run: | 
-          echo BRANCH_NEW="release/1.2.3" >> $GITHUB_ENV
+          echo BRANCH_NEW="release" >> $GITHUB_ENV
           echo "Branch New: ${BRANCH_NEW}"
       - name: Is Tag Version In Release Branch
         id: branch_tag
         if: ${{ startsWith(env.BRANCH, 'release/') }}
         run: |
             echo "Release Branch with version"
-            echo "TAG_NAME_ENV=${BRANCH_NEW/'release/'}" >> $GITHUB_ENV
             echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_OUTPUT
 
   find-tag-by-branch:
     if:  ${{ !needs.find-tag-in-branch.outputs.TAG_NAME }}
     runs-on: ubuntu-latest
     needs: find-tag-in-branch
+    outputs:
+       TAG_NAME: ${{steps.version.outputs.TAG_NAME}}
     steps:
-      - run: echo "Found Tag TAG_NAME_ENV - ${TAG_NAME_ENV}"
-      - run: echo "Found Tag TAG_NAME - ${TAG_NAME}"
-      - run: echo "Found Tag  ${{ needs.find-tag-in-branch.outputs.TAG_NAME }}"
       - name: Is branch wihout a version
         id: branch_release
         run: |
+          echo BRANCH_NEW="release" >> $GITHUB_ENV
           if [[ $BRANCH_NEW == release ]]; then 
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
           elif [[ $BRANCH_NEW == hotfix ]]; then 
@@ -50,18 +49,18 @@ jobs:
           use_api: true
           increment: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
       - run: |
-          echo "Next Release - ${{steps.version.outputs.v-version}}"
-           echo "TAG_NAME=${{steps.version.outputs.v-version}}" >> $GITHUB_ENV
+          echo "Next Release - ${{steps.version.outputs.version}}"
+          echo "TAG_NAME=${{steps.version.outputs.version}}" >> $GITHUB_OUTPUT
             
-      - name: Printing Tag
-        id: tag
-        run: | 
-           echo "Release TAG_NAME - ${TAG_NAME}"
-           echo "Release Version RELEASE_TYPE - ${RELEASE_TYPE}"
-           echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
-           if [[ $TAG_NAME ]]; then
-              echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
-           fi
+      #- name: Printing Tag
+      #  id: tag
+      #  run: | 
+      #     echo "Release TAG_NAME - ${TAG_NAME}"
+      #     echo "Release Version RELEASE_TYPE - ${RELEASE_TYPE}"
+      #     echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
+      #     if [[ $TAG_NAME ]]; then
+      #        echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
+      #     fi
 
   create-tag:
     if: ${{ always() }}
@@ -69,6 +68,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [find-tag-in-branch, find-tag-by-branch]
     steps:
-      - run: echo "Tag TAG_NAME - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
-      - run: echo "Tag TAG_NAME - ${TAG_NAME_ENV}" 
+      - run: echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
+      - run: echo "Tag Next Release - ${{needs.find-tag-by-branch.outputs.TAG_NAME}}" 
            
