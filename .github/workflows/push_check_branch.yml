@@ -54,7 +54,7 @@ jobs:
           echo "TAG_NAME=${{steps.version.outputs.version}}" >> $GITHUB_OUTPUT
       - run: echo "TAG_NAME_DKA=$(echo ${{steps.version.outputs.v-version}})" >> $GITHUB_ENV
         env:
-          TAG_NAME: ${{steps.version.outputs.version}}
+          TAG_NAME_DKA: ${{steps.version.outputs.v-version}}
             
       #- name: Printing Tag
       #  id: tag
