@@ -40,8 +40,10 @@ jobs:
       #  run: |
       #      echo "Release Branch Patch Release"
       #      echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
-      - name: Find Next Version By Branch Name @@@@@
+      - name: Initiating Next Version Lookup
+        uses: actions/checkout@v4
         if: env.RELEASE_TYPE
+      - name: Find Next Tag By Branch
         uses: reecetech/version-increment@2023.10.1
         with:
           use_api: true
