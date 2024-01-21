@@ -24,6 +24,7 @@ jobs:
             echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_ENV
       - name: Is branch wihout a version
         run: |
+          echo "Checking Branch for $BRANCH_NEW"
           elif [[ $BRANCH_NEW == release ]]; then 
             echo "RELEASE_TYPE=minor" >> $GITHUB_ENV
           elif [[ $BRANCH_NEW == hotfix ]]; then 
