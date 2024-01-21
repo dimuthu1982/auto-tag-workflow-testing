@@ -1,5 +1,5 @@
 env:
-  BRANCH: "release/1.2.3"
+  BRANCH: release/1.2.3
   
 name: Branch Check
 run-name: Branch Check
@@ -18,9 +18,10 @@ jobs:
         run: |
             echo "Release Branch with version"
             echo "Release Branch Name - ${{env.BRANCH}}"
-            echo "TAG_NAME=${${env.BRANCH}}/'release/'}" >> "$GITHUB_ENV"
-            echo "TAG_NAME1=${${env.BRANCH}/'release/'}" >> "GITHUB_OUTPUT"
-            echo "Prinitng tag name - $TAG_NAME"
+            echo "TTTT=release/1.2.3${{env.BRANCH}}"
+            echo "TAG_NAME=${TTTT}/'release/'}" >> "$GITHUB_ENV"
+            echo "TAG_NAME1=${TTTT}/'release/'}" >> "GITHUB_OUTPUT"
+            echo "Prinitng tag name - $TTTT"
       - name: Is Release Branch
         if: ${{ endsWith(env.BRANCH, 'release') }}
         run: echo "Release Branch Minor Release"
