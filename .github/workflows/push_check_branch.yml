@@ -23,6 +23,7 @@ jobs:
             echo "Release Branch with version"
             echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_ENV
       - name: Is branch wihout a version
+        id: RELEASE_TYPE
         run: |
           echo "Checking Branch for ${BRANCH_NEW}"
           if [[ $BRANCH_NEW == release ]]; then 
@@ -48,7 +49,8 @@ jobs:
         with:
           use_api: true
           increment: ${RELEASE_TYPE}
-      
+          
+      - run: echo "env.RELEASE_TYPE - ${env.RELEASE_TYPE}"
       - run: echo "Next Release - ${{steps.version.outputs.v-version}}"
             
       - name: Printing Tag
