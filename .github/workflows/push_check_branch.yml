@@ -36,7 +36,8 @@ jobs:
         with:
           use_api: true
           increment: ${{ RELEASE_TYPE }}
-        run: echo "Next Release - ${{steps.version.outputs.v-version}}"
+      
+      - run: echo "Next Release - ${{steps.version.outputs.v-version}}"
             
       - name: Printing Tag
         id: tag
