@@ -25,28 +25,17 @@ jobs:
       - name: Is branch wihout a version
         id: branch_release
         run: |
-          echo "Checking Branch for ${BRANCH_NEW}"
           if [[ $BRANCH_NEW == release ]]; then 
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
           elif [[ $BRANCH_NEW == hotfix ]]; then 
             echo "RELEASE_TYPE=patch" >> $GITHUB_OUTPUT
           fi
-      #- name: Is Release Branch
-      #  if: ${{ endsWith(env.BRANCH, 'release') }}
-      #  run: |
-      #      echo "Release Branch Minor Release"
-      #      echo "RELEASE_TYPE=minor" >> $GITHUB_ENV
-      #- name: Is Hotfix Branch
-      #  if: ${{ endsWith(env.BRANCH, 'hotfix') }}
-      #  run: |
-      #      echo "Release Branch Patch Release"
-      #      echo "RELEASE_TYPE=patch" >> $GITHUB_ENV
 
-      - run: echo " RELEASE_TYPE STEPS ${{ steps.branch_release.outputs.RELEASE_TYPE }}"
-      - name: Initiating Next Version Lookup
+      - name: Initiating Next Version Lookup @
         uses: actions/checkout@v4
         if: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
-      - name: Find Next Tag By Branch
+      - name: Find Next Tag By Branch @
+        id: version
         uses: reecetech/version-increment@2023.10.1
         with:
           use_api: true
