@@ -50,6 +50,7 @@ jobs:
           use_api: true
           increment: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
       - run: |
+          echo "Next Release Type  ->>> ${{ steps.branch_release.outputs.RELEASE_TYPE }}"
           echo "Next Release  ->>> ${{steps.version.outputs.version}}"
           echo "NEXT_TAG_NAME=${{steps.version.outputs.version}}" >> $GITHUB_OUTPUT
 
