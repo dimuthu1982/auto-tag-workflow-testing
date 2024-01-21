@@ -27,8 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: find-tag-in-branch
     outputs:
-       NEXT_TAG_NAME: ${{ steps.version.outputs.NEXT_TAG_NAME }}
-       MY_NAME: ${{steps.tag.outputs.NAME}}
+       NEXT_TAG_NAME: ${{steps.tag.outputs.NEXT_TAG_NAME}}
     steps:
       - name: Is branch wihout a version
         id: branch_release
@@ -51,19 +50,10 @@ jobs:
         with:
           use_api: true
           increment: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
-      - name: Set Var
+      - name: Set Next Tag
         id: tag
-        run: |
-                  echo "Prnting form Job 1"
-                  echo "NAME=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
-                  echo ENABLE=false >> $GITHUB_OUTPUT
-      - run: |
-          echo "Next Release Type  ->>> ${{ steps.branch_release.outputs.RELEASE_TYPE }}"
-          echo "Next Release  ->>> ${{ steps.version.outputs.version }}"
-          echo "NEXT_TAG_NAME=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
-          echo "NEXT_TAG_NAME=DDDDFDFDFDFD" >> $GITHUB_OUTPUT
+        run: echo "NEXT_TAG_NAME=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
 
-            
       #- name: Printing Tag
       #  id: tag
       #  run: | 
@@ -81,12 +71,11 @@ jobs:
     needs: [find-tag-in-branch, find-tag-by-branch]
     steps:
       - env:
-          BRANCH_RELEASE: ${{needs.find-tag-in-branch.outputs.TAG_NAME}}
-          NEXT_RELEASE: ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}
+          BRANCH_TAG: ${{needs.find-tag-in-branch.outputs.TAG_NAME}}
+          NEXT_TAG: ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}
         run: |
-          echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
-          echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}" 
-          echo "Tag Next Release BRANCH_RELEASE ---> $BRANCH_RELEASE" 
-          echo "Tag Next Release NEXT_RELEASE ---> $NEXT_RELEASE" 
-          echo "Got Data From - ${{needs.find-tag-by-branch.outputs.MY_NAME}}"
+          #echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
+          #echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}" 
+          echo "Tag Next Release BRANCH_RELEASE ---> $BRANCH_TAG" 
+          echo "Tag Next Release NEXT_RELEASE ---> $NEXT_TAG" 
            
