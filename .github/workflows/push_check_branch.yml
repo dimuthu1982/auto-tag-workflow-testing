@@ -5,7 +5,7 @@ name: Branch Check
 run-name: Branch Check
 on: [push]
 jobs:
-  Check-Branch-Name:
+  fin-tag-name:
      runs-on: ubuntu-latest
      steps: 
       - name: set Version
@@ -30,4 +30,12 @@ jobs:
       - name: Printing Tag
         run: | 
            echo "Release TAG_NAME - ${TAG_NAME}"
+
+  create-tag:
+    name: Tag Branch
+    runs-on: ubuntu-latest
+    needs: fin-tag-name
+    steps:
+      - run: echo "Tag TAG_NAME1 - ${{env.TAG_NAME}}"
+      - run: echo "DKA - $DKA"
            
