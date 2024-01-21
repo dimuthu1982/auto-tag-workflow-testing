@@ -25,7 +25,9 @@ jobs:
             echo "TAG_NAME1=${TTTT/'release/'}" >> $GITHUB_OUTPUT
             echo "Prinitng tag name TTT - ${TTTT}"
              echo "Prinitng tag name TAG_NAME - ${TAG_NAME}"
-             echo "Prinitng tag name TAG_NAME1 - ${TAG_NAME1}"
+             echo "Prinitng tag name TAG_NAME1 - ${TAG_NAME1}" 
+             echo version=${TTTT/'release/'}
+             echo "Prinitng version - ${version}" 
       - name: Is Release Branch
         if: ${{ endsWith(env.BRANCH, 'release') }}
         run: echo "Release Branch Minor Release"
