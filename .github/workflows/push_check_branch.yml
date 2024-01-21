@@ -18,8 +18,9 @@ jobs:
         run: |
             echo "Release Branch with version"
             echo "Release Branch Name - ${{env.BRANCH}}"
-            echo "TAG_NAME=${${{env.BRANCH}}/'release/'}" >> "$GITHUB_ENV"
-            echo "Prinitng tagmname - $TAG_NAME"
+            echo "TAG_NAME=${env.BRANCH}/'release/'}" >> "$GITHUB_ENV"
+            echo "TAG_NAME1=${${env.BRANCH}/'release/'}" >> "GITHUB_OUTPUT"
+            echo "Prinitng tag name - $TAG_NAME"
       - name: Is Release Branch
         if: ${{ endsWith(env.BRANCH, 'release') }}
         run: echo "Release Branch Minor Release"
@@ -30,4 +31,6 @@ jobs:
       - name: Printing Tag
         run: | 
            echo "Release BRANCH - ${{env.BRANCH}}"
+           echo "Release TAG_NAME 1 - ${{steps.branch_tag.outputs.TAG_NAME1}}"
+           echo "Release TAG_NAME - ${{steps.branch_tag.outputs.TAG_NAME}}"
            echo "Release TAG_NAME - $TAG_NAME"
