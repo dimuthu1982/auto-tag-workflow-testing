@@ -8,7 +8,7 @@ jobs:
      name: Find Tag Name In Branch
      runs-on: ubuntu-latest
      outputs:
-       TAG_NAME: ${{steps.branch_tag.outputs.TAG}}
+       TAG_NAME: ${{steps.branch_tag.outputs.TAG_NAME}}
      steps: 
       - name: set Version
         id: set_branch
