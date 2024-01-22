@@ -61,11 +61,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [extract-tag-in-branch, find-next-tag-by-branch]
     steps:
+      - uses: actions/checkout@v4
       - env:
           BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
           NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
-      - name: Initating tag...
-        uses: actions/checkout@v4
       - run: |
           RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
           echo "Taging- $RELEASING_TAG"
