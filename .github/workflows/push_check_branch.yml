@@ -24,7 +24,7 @@ jobs:
 
   find-next-tag-by-branch:
     name: Find Next Tag By Branh
-    if:  ${{ !needs.find-tag-in-branch.outputs.TAG_NAME }}
+    if:  ${{ !needs.extract-tag-in-branch.outputs.TAG_NAME }}
     runs-on: ubuntu-latest
     needs: extract-tag-in-branch
     outputs:
