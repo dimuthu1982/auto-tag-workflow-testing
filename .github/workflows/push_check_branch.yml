@@ -77,8 +77,9 @@ jobs:
         run: |
           #echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
           #echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}" 
-          echo "Tag Next Release BRANCH_RELEASE ---> $BRANCH_TAG" 
-          echo "Tag Next Release NEXT_RELEASE ---> $NEXT_TAG" 
+          echo "Tag Next Release BRANCH_TAG ---> ${BRANCH_TAG}" 
+           echo "Tag Next Release env.BRANCH_TAG ---> ${env.BRANCH_TAG}" 
+          echo "Tag Next Release NEXT_RELEASE ---> ${NEXT_TAG}" 
           echo "RELEASING_TAG=$(BRANCH_TAG? BRANCH_TAG : NEXT_TAG)"
           echo "Taging: $RELEASING_TAG "
            
