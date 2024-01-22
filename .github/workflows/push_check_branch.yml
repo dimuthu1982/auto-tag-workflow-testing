@@ -72,7 +72,7 @@ jobs:
       - run: |
           git config --global user.name ${{ github.triggering_actor }}
           git config --global user.email dimuthu1982@yahoo.com
-          git tag $RELEASING_TAG
+          git tag $RELEASING_TAG -m "Release ${RELEASING_TAG}"
           git push --tags
         
            
