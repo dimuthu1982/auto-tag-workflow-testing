@@ -64,15 +64,16 @@ jobs:
       - env:
           BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
           NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
+      - name: Find Tag Name
         run: |
           RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
-          echo "Taging- $RELEASING_TAG"
+          echo "Taging - $RELEASING_TAG"
       - name: Creating tag
         uses: actions/checkout@v4
       - run: |
           git config --global user.name ${{ github.triggering_actor }}
-          git config --global user.email dimuthu1982@yahoo.com
-          git tag $RELEASING_TAG -m "Release ${RELEASING_TAG}"
+          git config --global user.email dimuthu1982@yahoo.com 
+          git tag -a "$RELEASING_TAG" -m "Release ${RELEASING_TAG}"
           git push --tags
         
            
