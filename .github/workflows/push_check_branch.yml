@@ -80,6 +80,6 @@ jobs:
           #echo "Tag Next Release BRANCH_TAG ---> ${BRANCH_TAG}" 
           echo "Tag Next Release BRANCH_TAG ---> ${BRANCH_TAG}" 
           echo "Tag Next Release NEXT_RELEASE ---> ${NEXT_TAG}" 
-          RELEASING_TAG=${BRANCH_TAG:NEXT_TAG}
+          RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
           echo "Taging- $RELEASING_TAG "
            
