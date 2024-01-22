@@ -1,5 +1,5 @@
 env:
-  BRANCH: release/1.3.6
+  BRANCH: release
 name: Branch Check
 run-name: Branch Check
 on: [push]
@@ -10,10 +10,11 @@ jobs:
      outputs:
        TAG_NAME: ${{steps.branch_tag.outputs.TAG_NAME}}
      steps: 
+      - uses: actions/checkout@v4
       - name: set Version
         id: set_branch
         run: | 
-          echo BRANCH_NEW="release/1.3.6" >> $GITHUB_ENV
+          echo BRANCH_NEW="release" >> $GITHUB_ENV
           echo "Branch New: ${BRANCH_NEW}"
       - name: Is Tag Version In Release Branch
         id: branch_tag
@@ -33,7 +34,7 @@ jobs:
       - name: Is branch wihout a version
         id: branch_release
         run: |
-           BRANCH_NEW="release/1.3.6" 
+           BRANCH_NEW="release" 
            if [[ $BRANCH_NEW == release ]]; then 
             echo "Identifyed as RELEASE, minor"
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
@@ -43,9 +44,9 @@ jobs:
            else 
             exit 0;
            fi
-      - name: Initiating Next Version Lookup @
-        uses: actions/checkout@v4
-      - name: Find Next Tag By Branch @
+      #- name: Initiating Next Version Lookup @
+      #  uses: actions/checkout@v4
+      - name: Find Next Tag By Branch
         id: version
         uses: reecetech/version-increment@2023.10.1
         with:
