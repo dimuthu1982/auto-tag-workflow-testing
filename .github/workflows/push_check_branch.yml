@@ -5,7 +5,7 @@ run-name: Branch Check
 on: [push]
 jobs:
   extract-tag-in-branch:
-     name: Find Tag Name In Branch
+     name: Find Tag In Branch
      runs-on: ubuntu-latest
      outputs:
        TAG_NAME: ${{steps.branch_tag.outputs.TAG_NAME}}
@@ -72,8 +72,8 @@ jobs:
     needs: [extract-tag-in-branch, find-next-tag-by-branch]
     steps:
       - env:
-          BRANCH_TAG: ${{needs.find-tag-in-branch.outputs.TAG_NAME}}
-          NEXT_TAG: ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}
+          BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
+          NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
         run: |
           #echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
           #echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}" 
