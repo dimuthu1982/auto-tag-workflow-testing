@@ -64,9 +64,10 @@ jobs:
       - env:
           BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
           NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
-      - name: Creating tag
+      - name: Initating tag...
         uses: actions/checkout@v4
-      - run: |
+      - name: Creating tag
+        run: |
           RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
           echo "Taging- $RELEASING_TAG"
           git config --global user.name ${{ github.triggering_actor }}
