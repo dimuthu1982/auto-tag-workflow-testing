@@ -60,6 +60,7 @@ jobs:
     name: Tag Branch
     runs-on: ubuntu-latest
     needs: [extract-tag-in-branch, find-next-tag-by-branch]
+    
     steps:
       - env:
           BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
@@ -71,9 +72,9 @@ jobs:
       - name: Creating tag
         uses: actions/checkout@v4
       - run: |
-          git config --global user.name ${{ github.triggering_actor }}
-          git config --global user.email dimuthu1982@yahoo.com 
-          git tag -a "$RELEASING_TAG" -m "Release ${RELEASING_TAG}"
-          git push --tags
+            git config --global user.name ${{ github.triggering_actor }}
+            git config --global user.email dimuthu1982@yahoo.com 
+            git tag -a "$RELEASING_TAG" -m "Release ${RELEASING_TAG}"
+            git push --tags
         
            
