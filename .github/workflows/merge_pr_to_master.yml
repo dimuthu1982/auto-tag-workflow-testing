@@ -21,7 +21,7 @@ jobs:
           #echo "Branch New: ${BRANCH}"
       - name: Is Tag Version In Release Branch
         id: branch_tag
-        if: ${{ startsWith(BRANCH, 'release/') }}
+        if: ${{ startsWith(github.head_ref, 'release/') }}
         run: |
             echo "Release Branch with version"
             echo "TAG_NAME=${BRANCH/'release/'}" >> $GITHUB_OUTPUT
