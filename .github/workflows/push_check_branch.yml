@@ -23,7 +23,7 @@ jobs:
             echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_OUTPUT
 
   find-next-tag-by-branch:
-    name: Find Next Tag By Branh
+    name: Find Next Tag By Branch
     if:  ${{ !needs.extract-tag-in-branch.outputs.TAG_NAME }}
     runs-on: ubuntu-latest
     needs: extract-tag-in-branch
@@ -55,16 +55,6 @@ jobs:
         id: tag
         run: echo "NEXT_TAG_NAME=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
 
-      #- name: Printing Tag
-      #  id: tag
-      #  run: | 
-      #     echo "Release TAG_NAME - ${TAG_NAME}"
-      #     echo "Release Version RELEASE_TYPE - ${RELEASE_TYPE}"
-      #     echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
-      #     if [[ $TAG_NAME ]]; then
-      #        echo "TAG=${TAG_NAME}" >> $GITHUB_OUTPUT
-      #     fi
-
   create-tag:
     if: ${{ always() }}
     name: Tag Branch
@@ -75,11 +65,6 @@ jobs:
           BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
           NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
         run: |
-          #echo "Tag In Branch - ${{needs.find-tag-in-branch.outputs.TAG_NAME}}" 
-          #echo "Tag In Branch - ${{needs.find-tag-by-branch.outputs.NEXT_TAG_NAME}}" 
-          #echo "Tag Next Release BRANCH_TAG ---> ${BRANCH_TAG}" 
-          echo "Tag Next Release BRANCH_TAG ---> ${BRANCH_TAG}" 
-          echo "Tag Next Release NEXT_RELEASE ---> ${NEXT_TAG}" 
           RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
-          echo "Taging- $RELEASING_TAG "
+          echo "Taging- $RELEASING_TAG"
            
