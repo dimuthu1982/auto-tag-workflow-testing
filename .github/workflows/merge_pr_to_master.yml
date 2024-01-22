@@ -17,14 +17,14 @@ jobs:
       - name: set Version
         id: set_branch
         run: | 
-          #echo BRANCH_NEW="release/1.21.5" >> $GITHUB_ENV
-         # echo "Branch New: ${BRANCH_NEW}"
+          echo BRANCH="${{github.head_ref}}" >> $GITHUB_ENV
+          #echo "Branch New: ${BRANCH}"
       - name: Is Tag Version In Release Branch
         id: branch_tag
-        if: ${{ startsWith(github.head_ref, 'release/') }}
+        if: ${{ startsWith(BRANCH, 'release/') }}
         run: |
             echo "Release Branch with version"
-            echo "TAG_NAME=${github.head_ref/'release/'}" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=${BRANCH/'release/'}" >> $GITHUB_OUTPUT
 
   find-next-tag-by-branch:
     name: Find Next Tag By Branch
