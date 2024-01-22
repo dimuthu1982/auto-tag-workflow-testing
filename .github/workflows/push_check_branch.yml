@@ -67,6 +67,8 @@ jobs:
         run: |
           RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
           echo "Taging- $RELEASING_TAG"
+      - name: Creating tag
+        uses: actions/checkout@v4
       - run: |
           git config --global user.name ${{ github.triggering_actor }}
           git config --global user.email dimuthu1982@yahoo.com
