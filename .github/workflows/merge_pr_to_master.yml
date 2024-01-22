@@ -24,7 +24,7 @@ jobs:
         if: ${{ startsWith(github.head_ref, 'release/') }}
         run: |
             echo "Release Branch with version"
-            echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=${github.head_ref/'release/'}" >> $GITHUB_OUTPUT
 
   find-next-tag-by-branch:
     name: Find Next Tag By Branch
