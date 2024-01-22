@@ -64,13 +64,11 @@ jobs:
       - env:
           BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
           NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
-        run: |
-          RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
-          echo "Taging- $RELEASING_TAG"
       - name: Creating tag
         uses: actions/checkout@v4
       - run: |
-          echo "Taggging Now... : $RELEASING_TAG"
+          RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
+          echo "Taging- $RELEASING_TAG"
           git config --global user.name ${{ github.triggering_actor }}
           git config --global user.email dimuthu1982@yahoo.com
           git tag -a $RELEASING_TAG -m "Varsion ${RELEASING_TAG}"
