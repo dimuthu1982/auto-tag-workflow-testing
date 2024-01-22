@@ -1,0 +1,73 @@
+name: Merge branch to master
+run-name: Merge ${{ github.head_ref }} to master (After Permision Fixed minor v) 🏷️
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'master'
+
+jobs:
+  extract-tag-in-branch:
+     name: Find Tag In Branch
+     runs-on: ubuntu-latest
+     outputs:
+       TAG_NAME: ${{steps.branch_tag.outputs.TAG_NAME}}
+     steps: 
+      - name: set Version
+        id: set_branch
+        run: | 
+          echo BRANCH_NEW="release/1.21.5" >> $GITHUB_ENV
+          echo "Branch New: ${BRANCH_NEW}"
+      - name: Is Tag Version In Release Branch
+        id: branch_tag
+        if: ${{ startsWith(env.BRANCH, 'release/') }}
+        run: |
+            echo "Release Branch with version"
+            echo "TAG_NAME=${BRANCH_NEW/'release/'}" >> $GITHUB_OUTPUT
+
+  find-next-tag-by-branch:
+    name: Find Next Tag By Branch
+    if:  ${{ !needs.extract-tag-in-branch.outputs.TAG_NAME }}
+    runs-on: ubuntu-latest
+    needs: extract-tag-in-branch
+    outputs:
+       NEXT_TAG_NAME: ${{steps.tag.outputs.NEXT_TAG_NAME}}
+    steps:
+      - name: Is branch wihout a version
+        id: branch_release
+        run: |
+           BRANCH_NEW="release/1.21.5" 
+           if [[ $BRANCH_NEW == release ]]; then 
+            echo "Identifyed as RELEASE, minor"
+            echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
+           elif [[ $BRANCH_NEW == hotfix ]]; then 
+            echo "Identifyed as HOTFIX, patch"
+            echo "RELEASE_TYPE=patch" >> $GITHUB_OUTPUT
+           else 
+            exit 0;
+           fi
+      - name: Initiating Next Version Lookup @
+        uses: actions/checkout@v4
+      - name: Find Next Tag By Branch @
+        id: version
+        uses: reecetech/version-increment@2023.10.1
+        with:
+          use_api: true
+          increment: ${{ steps.branch_release.outputs.RELEASE_TYPE }}
+      - name: Set Next Tag
+        id: tag
+        run: echo "NEXT_TAG_NAME=${{ steps.version.outputs.version }}" >> $GITHUB_OUTPUT
+
+  create-tag:
+    if: ${{ always() }}
+    name: Tag Branch
+    runs-on: ubuntu-latest
+    needs: [extract-tag-in-branch, find-next-tag-by-branch]
+    steps:
+      - env:
+          BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
+          NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
+        run: |
+          RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
+          echo "Taging- $RELEASING_TAG"
