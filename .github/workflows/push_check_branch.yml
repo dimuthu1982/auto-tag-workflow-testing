@@ -1,5 +1,5 @@
 env:
-  BRANCH: release
+  BRANCH: hotfix
 name: Branch Check
 run-name: Branch Check
 on: [push]
@@ -33,7 +33,7 @@ jobs:
       - name: Is branch wihout a version
         id: branch_release
         run: |
-           BRANCH_NEW="release" 
+           BRANCH_NEW="hotfix" 
            if [[ $BRANCH_NEW == release ]]; then 
             echo "Identifyed as RELEASE, minor"
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
