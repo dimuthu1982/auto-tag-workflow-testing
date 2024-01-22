@@ -72,5 +72,5 @@ jobs:
       - run: |
           git config --global user.name ${{ github.triggering_actor }}
           git config --global user.email dimuthu1982@yahoo.com
-          git tag -a "$RELEASING_TAG" -m "Varsion ${RELEASING_TAG}"
+          git tag -a "${RELEASING_TAG}" -m "Varsion ${RELEASING_TAG}"
           git push --tags
