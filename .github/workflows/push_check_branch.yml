@@ -1,5 +1,5 @@
 env:
-  BRANCH: release/1.21.5
+  BRANCH: myrelea
 name: Branch Check
 run-name: Branch Check
 on: [push]
@@ -13,7 +13,7 @@ jobs:
       - name: set Version
         id: set_branch
         run: | 
-          echo BRANCH_NEW="release/1.21.5" >> $GITHUB_ENV
+          echo BRANCH_NEW="myrelea" >> $GITHUB_ENV
           echo "Branch New: ${BRANCH_NEW}"
       - name: Is Tag Version In Release Branch
         id: branch_tag
@@ -33,7 +33,7 @@ jobs:
       - name: Is branch wihout a version
         id: branch_release
         run: |
-           BRANCH_NEW="release/1.21.5" 
+           BRANCH_NEW="myrelea" 
            if [[ $BRANCH_NEW == release ]]; then 
             echo "Identifyed as RELEASE, minor"
             echo "RELEASE_TYPE=minor" >> $GITHUB_OUTPUT
