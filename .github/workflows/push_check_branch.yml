@@ -43,9 +43,9 @@ jobs:
            else 
             exit 0;
            fi
-      - name: Initiating Next Version Lookup @
+      - name: Initiating Next Version Lookup
         uses: actions/checkout@v4
-      - name: Find Next Tag By Branch @
+      - name: Find Next Tag By Branch
         id: version
         uses: reecetech/version-increment@2023.10.1
         with:
@@ -65,12 +65,12 @@ jobs:
       - env:
           BRANCH_TAG: ${{needs.extract-tag-in-branch.outputs.TAG_NAME}}
           NEXT_TAG: ${{needs.find-next-tag-by-branch.outputs.NEXT_TAG_NAME}}
+      - name: Initiating Tag Creation
+        uses: actions/checkout@v4
       - name: Find Tag Name
         run: |
           RELEASING_TAG=$([ $BRANCH_TAG ] && echo "$BRANCH_TAG" || echo "$NEXT_TAG")
           echo "Taging - $RELEASING_TAG"
-      - name: Creating tag
-      - uses: actions/checkout@v4
       - run: |
             git config --global user.name ${{ github.triggering_actor }}
             git config --global user.email dimuthu1982@yahoo.com 
