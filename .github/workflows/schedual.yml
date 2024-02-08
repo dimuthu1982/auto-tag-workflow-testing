@@ -15,6 +15,5 @@ jobs:
         with:
           token: ${{secrets.GITHUB_TOKEN}}
           state: 'closed'
-          window: '24'
       - name: output
         run: echo '${{ steps.list.outputs.pullRequestNumbers }}'
