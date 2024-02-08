@@ -11,9 +11,10 @@ jobs:
       - run: echo "Testing"
       - name: list all closed pull requests in last 24 hours
         id: list
-        uses: actions/github-list-pull-requests@v1.0
+        uses: buildsville/list-pull-requests@v1
         with:
           token: ${{secrets.GITHUB_TOKEN}}
-          state: 'closed'
+          #labels: '["WFR"]'
+          #skip_hour: '24'
       - name: output
-        run: echo '${{ steps.list.outputs.pullRequestNumbers }}'
+        run: echo '${{ steps.list.outputs.pulls }}'
