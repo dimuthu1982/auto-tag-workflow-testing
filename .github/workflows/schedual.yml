@@ -1,4 +1,5 @@
 name: "Close stale issues PR"
+run-name: Find PR Closed 🏷️
 on:
   schedule:
     - cron: "*/5 * * * *"
