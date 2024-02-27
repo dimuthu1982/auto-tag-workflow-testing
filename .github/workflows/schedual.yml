@@ -1,4 +1,4 @@
-name: "Close stale issues PR Schedual"
+name: "Close stale issues PR Schedual v1"
 run-name: Find PR Closed 🏷️
 on:
   schedule:
