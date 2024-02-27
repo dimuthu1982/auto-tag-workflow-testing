@@ -4,6 +4,7 @@ on: #push
   schedule:
     - cron: '58 16 * * *'
     - cron: '0 17 * * *'
+    - cron: '2 18 * * *'
 
 jobs:
   stale:
