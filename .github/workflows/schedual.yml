@@ -1,10 +1,11 @@
 name: "Close stale issues PR Schedual"
 run-name: Find PR Closed 🏷️
-on: #push
+on:
   schedule:
-    - cron: '58 16 * * *'
-    - cron: '0 17 * * *'
-    - cron: '2 18 * * *'
+    - cron: 20 07 * * 1
+    - cron: 0 8 * * *
+    - cron: 0 9 * * *
+    - cron: 55 20 * * *
 
 jobs:
   stale:
