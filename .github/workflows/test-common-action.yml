@@ -5,5 +5,6 @@ jobs:
   Find-Tag-Name:
      runs-on: ubuntu-latest
      steps: 
-       - name: Before using common action
        - uses: workflow-action/release-tag@main 
+         with: 
+           source-branch: testingBranch
