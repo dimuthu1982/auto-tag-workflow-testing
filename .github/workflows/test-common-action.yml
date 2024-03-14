@@ -7,6 +7,6 @@ jobs:
      steps: 
        - uses: dimuthu1982/workflow-action/release-tag@main 
          with: 
-           sourcebranch: "release/1.2.3"
+           sourcebranch: "release"
          
        - run: echo "v121"
