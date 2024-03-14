@@ -1,0 +1,9 @@
+name: Branch Check
+run-name: Create Version Tag
+on: [push]
+jobs:
+  Find-Tag-Name:
+     runs-on: ubuntu-latest
+     steps: 
+       - name: Before using common action
+       - uses: workflow-action/release-tag@main 
