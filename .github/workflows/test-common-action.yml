@@ -1,4 +1,4 @@
-name: Branch Check
+name: Branch Check (Beta)
 run-name: Create Version Tag
 on: [push]
 jobs:
