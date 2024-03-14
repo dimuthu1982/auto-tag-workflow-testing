@@ -7,6 +7,6 @@ jobs:
      steps: 
        - uses: dimuthu1982/workflow-action/release-tag@main 
          with: 
-           source-branch: testingBranch
+           sourcebranch: testingBranch
          
        - run: echo "1111111"
