@@ -9,4 +9,4 @@ jobs:
          with: 
            sourcebranch: testingBranch
          
-       - run: echo "v2"
+       - run: echo "v22"
