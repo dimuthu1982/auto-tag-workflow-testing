@@ -1,5 +1,5 @@
 name: Branch Check (Beta)
-run-name: Create Version Tag1
+run-name: Create Version Tag
 on: [push]
 jobs:
   Find-Tag-Name:
