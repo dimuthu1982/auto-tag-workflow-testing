@@ -1,5 +1,5 @@
 name: Ferch Active PR's (Beta)
-run-name: Create Version Tag
+run-name: Ferch Active PR's (Beta)
 on: [push]
 jobs:
   Find-Tag-Name:
