@@ -2,7 +2,7 @@ name: Ferch Active PR's (Beta)
 run-name: Ferch Active PR's (Beta)
 on: [push]
 jobs:
-  Find-Tag-Name:
+  Find-Avtive-Pull-Requests:
      runs-on: ubuntu-latest
      steps: 
        - name: Find Active PR
