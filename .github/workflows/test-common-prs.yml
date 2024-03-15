@@ -9,4 +9,4 @@ jobs:
          id: prs
          uses: dimuthu1982/workflow-action/slack-active-pr@main 
          with: 
-           channelid: "12343"
+           channelid: "1233"
