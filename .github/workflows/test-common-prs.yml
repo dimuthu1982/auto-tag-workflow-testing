@@ -1,0 +1,12 @@
+name: Ferch Active PR's (Beta)
+run-name: Create Version Tag
+on: [push]
+jobs:
+  Find-Tag-Name:
+     runs-on: ubuntu-latest
+     steps: 
+       - name: Find Active PR
+         id: prs
+         uses: dimuthu1982/workflow-action/slack-active-pr@main 
+         with: 
+           channelid: "12345"
