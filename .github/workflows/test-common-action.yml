@@ -5,8 +5,12 @@ jobs:
   Find-Tag-Name:
      runs-on: ubuntu-latest
      steps: 
-       - uses: dimuthu1982/workflow-action/release-tag@main 
+       - name: Create Release Tag
+         id: release_tag
+         uses: dimuthu1982/workflow-action/release-tag@main 
          with: 
            sourcebranch: "hotfix/rew"
          
-       - run: echo "v11"
+       - run: |
+           echo "v11"
+           echo "Output of the tag ->   ${{ steps.release_tag.outputs.tag }}"
