@@ -9,4 +9,4 @@ jobs:
          with: 
            sourcebranch: "release"
          
-       - run: echo "v11"
+       - run: echo "v1"
