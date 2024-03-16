@@ -7,7 +7,7 @@ jobs:
      steps: 
        - name: Create Release Tag
          id: release_tag
-         uses: dimuthu1982/workflow-action/release-tag@main 
+         uses: dimuthu1982/workflow-action/release-tag@mybranch 
          with: 
            source-branch: "hotfix/rew"
          
