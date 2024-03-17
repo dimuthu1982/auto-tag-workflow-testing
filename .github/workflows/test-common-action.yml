@@ -9,7 +9,7 @@ jobs:
        - name: Create Release Tag
          id: release_tag
          #uses: dimuthu1982/workflow-action/release-tag@mybranch 
-         uses: dimuthu1982/workflow-action/release-tag@mybranch 
+         uses: dimuthu1982/workflow-action/actions/release-tag@mybranch 
          with: 
            source-branch: "hotfix/rew"
          
