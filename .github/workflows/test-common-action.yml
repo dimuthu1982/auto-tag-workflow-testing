@@ -7,10 +7,11 @@ jobs:
      steps: 
        - name: Create Release Tag
          id: release_tag
-         uses: dimuthu1982/workflow-action/release-tag@mybranch 
+         #uses: dimuthu1982/workflow-action/release-tag@mybranch 
+         uses: actions/release-tag@mybranch 
          with: 
            source-branch: "hotfix/rew"
          
        - run: |
-           echo "v11"
-           echo "Output of the tag ->   ${{ steps.release_tag.outputs.tag }}"
+           echo "actions/release-tag"
+           #echo "Output of the tag ->   ${{ steps.release_tag.outputs.tag }}"
