@@ -15,4 +15,4 @@ jobs:
          
        - run: |
            echo "actions/release-tag"
-           #echo "Output of the tag ->   ${{ steps.release_tag.outputs.tag }}"
+           #echo "Output of the tag1 ->   ${{ steps.release_tag.outputs.tag }}"
