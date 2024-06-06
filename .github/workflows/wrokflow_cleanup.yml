@@ -10,5 +10,5 @@ jobs:
          id: cleanup
          uses: dimuthu1982/workflow-action/actions/work-flow-cleanup@main
          with: 
-           who-to-greet: 'Hello DKA How you doing'
+           who-to-greet: 'Hello DKA How you doing1'
          
