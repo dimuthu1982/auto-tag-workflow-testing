@@ -5,6 +5,8 @@ jobs:
   clean-past-workflows:
      runs-on: ubuntu-latest
      steps: 
+       - run: |
+          echo "Github Repo: ${{ github.repository }} "
        - uses: actions/checkout@v3
        - name: Cleanup 
          id: cleanup
