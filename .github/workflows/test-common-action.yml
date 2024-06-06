@@ -1,16 +1,18 @@
-name: Branch Check (Beta)
+name: Branch Check (Alpha)
 run-name: Create Version Tag
 on: [push]
 jobs:
   Find-Tag-Name:
      runs-on: ubuntu-latest
      steps: 
+       - uses: actions/checkout@v3
        - name: Create Release Tag
          id: release_tag
-         uses: dimuthu1982/workflow-action/release-tag@main 
+         #uses: dimuthu1982/workflow-action/release-tag@mybranch 
+         uses: dimuthu1982/workflow-action/actions/release-tag@mybranch 
          with: 
-           sourcebranch: "hotfix/rew"
+           source-branch: "hotfix/rew"
          
        - run: |
-           echo "v11"
-           echo "Output of the tag ->   ${{ steps.release_tag.outputs.tag }}"
+           echo "actions/release-tag"
+           #echo "Output of the tag1 ->   ${{ steps.release_tag.outputs.tag }}"
