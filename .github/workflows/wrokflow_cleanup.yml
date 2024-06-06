@@ -12,7 +12,7 @@ jobs:
          id: cleanup
          uses: dimuthu1982/workflow-action/work-flow-cleanup@main
          with: 
-           repository: ${{ github.repository }}
+           repo-path: ${{ github.repository }}
          env:
            GH_TOKEN: ${{ github.token }}
          
