@@ -2,7 +2,7 @@ name: Cleanup
 run-name: Cleanup
 on: [push]
 jobs:
-  Find-Tag-Name:
+  clean-past-workflows:
      runs-on: ubuntu-latest
      steps: 
        - uses: actions/checkout@v3
