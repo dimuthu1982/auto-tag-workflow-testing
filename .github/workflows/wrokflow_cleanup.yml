@@ -1,0 +1,14 @@
+name: Branch Check (Alpha)
+run-name: Create Version Tag
+on: [push]
+jobs:
+  Find-Tag-Name:
+     runs-on: ubuntu-latest
+     steps: 
+       - uses: actions/checkout@v3
+       - name: Cleanup 
+         id: cleanup
+         uses: dimuthu1982/workflow-action/actions/work-flow-cleanup@main
+         with: 
+           who-to-greet: 'Hello DKA How you doing'
+         
