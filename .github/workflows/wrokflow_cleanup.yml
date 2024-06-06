@@ -1,5 +1,5 @@
-name: Branch Check (Alpha)
-run-name: Create Version Tag
+name: Cleanup
+run-name: Cleanup
 on: [push]
 jobs:
   Find-Tag-Name:
