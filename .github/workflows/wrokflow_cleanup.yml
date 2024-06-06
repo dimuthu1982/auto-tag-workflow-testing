@@ -6,14 +6,14 @@ jobs:
      runs-on: ubuntu-latest
      steps: 
        - run: |
-          echo "Github Repo: ${{ github.repository }}"
+          echo "Github Repo: ${{ github.repository }} "
        - uses: actions/checkout@v3
        - name: Cleanup 
          id: cleanup
          uses: dimuthu1982/workflow-action/work-flow-cleanup@main
          with: 
            repo-path: ${{ github.repository }}
-           retaining-days: 20
+           retaining-days: 30
          env:
            GH_TOKEN: ${{ github.token }}
          
