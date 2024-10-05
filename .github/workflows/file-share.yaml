@@ -10,8 +10,12 @@ jobs:
     
         - name: Share File
           run: |
-                pwd
-                ls -lart
+                echo "::notice Notice message"
+                echo "::warning warning message"
+                echo "::debug:: Notice message"
+                echo "::error Notice message"
+                
+                echo "::workflow-command parameter1={data},parameter2={data}::{command value}"
 
         - uses: actions/upload-artifact@v4
           with:
