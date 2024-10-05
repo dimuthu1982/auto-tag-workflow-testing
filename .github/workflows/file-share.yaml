@@ -33,4 +33,4 @@ jobs:
                 pwd
                 ls -lart
                 echo "Printing File ..."
-                cat test.txt
+                cat test.txt >> $GITHUB_STEP_SUMMARY
